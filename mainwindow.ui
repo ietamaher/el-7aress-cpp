@@ -14,66 +14,32 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgba(0, 0, 0, 10) ;
+   <string notr="true">background-color:transparent ;
 font-family: Courier;
-font-size: 14pt;
+font-size: 13pt;
  font-weight : 600;  
 color:red;         
-QLabel {
-      color: rgb(55,0,0);
-      padding: 5px;
-	  background-color: rgb(50,255,255,0.5)  ;
-
-}</string>
+ </string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="VideoGLWidget_gl" name="ui_widget" native="true">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
+      <x>20</x>
+      <y>10</y>
       <width>1280</width>
       <height>720</height>
      </rect>
     </property>
-    <widget class="QLabel" name="display_stab">
-     <property name="geometry">
-      <rect>
-       <x>470</x>
-       <y>20</y>
-       <width>151</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="display_detection">
-     <property name="geometry">
-      <rect>
-       <x>670</x>
-       <y>20</y>
-       <width>151</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
+    <property name="styleSheet">
+     <string notr="true">background-color:black</string>
+    </property>
     <widget class="QLabel" name="display_azimuth">
      <property name="geometry">
       <rect>
-       <x>850</x>
-       <y>20</y>
-       <width>161</width>
+       <x>30</x>
+       <y>120</y>
+       <width>81</width>
        <height>25</height>
       </rect>
      </property>
@@ -84,73 +50,241 @@ QLabel {
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="display_track">
-     <property name="geometry">
-      <rect>
-       <x>250</x>
-       <y>20</y>
-       <width>171</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <property name="text">
-      <string>TextLabel</string>
+      <string>Az: 216°</string>
      </property>
     </widget>
     <widget class="QLabel" name="display_lrf">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>20</y>
-       <width>141</width>
-       <height>21</height>
+       <x>20</x>
+       <y>560</y>
+       <width>151</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>LRF: 2130 M</string>
      </property>
     </widget>
     <widget class="QLabel" name="display_burst_mode">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>610</y>
-       <width>241</width>
-       <height>41</height>
+       <x>20</x>
+       <y>630</y>
+       <width>211</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>MODE:SINGLE SHOT</string>
      </property>
     </widget>
     <widget class="QLabel" name="display_speed">
      <property name="geometry">
       <rect>
-       <x>880</x>
-       <y>150</y>
-       <width>131</width>
-       <height>41</height>
+       <x>20</x>
+       <y>220</y>
+       <width>121</width>
+       <height>16</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
      <property name="text">
-      <string>TextLabel</string>
+      <string>SPEED:100%</string>
      </property>
     </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>10</y>
+       <width>531</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <item>
+       <widget class="QLabel" name="display_track">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>TRACK:OFF</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="display_stab">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>STAB:OFF</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="display_detection">
+        <property name="font">
+         <font>
+          <family>Courier</family>
+          <pointsize>13</pointsize>
+          <fontweight>DemiBold</fontweight>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>DETECTION:OFF</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QLabel" name="display_elevation">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>160</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>El: 21°</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="display_fov">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>190</y>
+       <width>91</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>FOV: 45°</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="display_startup">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>280</y>
+       <width>331</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>System Starting ...</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>111</width>
+       <height>101</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:transparent;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>red_circle_with_graduations.png</pixmap>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>640</x>
+       <y>360</y>
+       <width>171</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="listWidget">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>380</y>
+       <width>311</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="flow">
+      <enum>QListView::LeftToRight</enum>
+     </property>
+     <property name="spacing">
+      <number>17</number>
+     </property>
+     <item>
+      <property name="text">
+       <string>Colonne A</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Colone B</string>
+      </property>
+     </item>
+    </widget>
+    <zorder>display_lrf</zorder>
+    <zorder>display_burst_mode</zorder>
+    <zorder>display_speed</zorder>
+    <zorder>horizontalLayoutWidget</zorder>
+    <zorder>display_elevation</zorder>
+    <zorder>display_fov</zorder>
+    <zorder>display_startup</zorder>
+    <zorder>label</zorder>
+    <zorder>display_azimuth</zorder>
+    <zorder>pushButton</zorder>
+    <zorder>listWidget</zorder>
    </widget>
   </widget>
  </widget>
@@ -158,10 +292,10 @@ QLabel {
   <customwidget>
    <class>VideoGLWidget_gl</class>
    <extends>QWidget</extends>
-   <header>/home/jetson/Desktop/el-7ress-cpp/videoglwidget_gl.h</header>
+   <header>/home/jetson/Desktop/el-7ress-cpp/videoglwidget_gl.h</header/header>
    <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>
  <connections/>
-</ui>
+</ui> 
