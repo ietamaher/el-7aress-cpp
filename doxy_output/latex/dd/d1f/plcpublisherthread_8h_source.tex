@@ -1,0 +1,31 @@
+\doxysection{plcpublisherthread.\+h}
+\hypertarget{plcpublisherthread_8h_source}{}\label{plcpublisherthread_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLCPUBLISHERTHREAD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLCPUBLISHERTHREAD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}plcddspublisher.h"{}}\ \ \textcolor{comment}{//\ header\ for\ DDSPublisher\ class}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}plcactiondata.h"{}}\ \ \ \ \textcolor{comment}{//\ header\ for\ ActionData\ structure}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlcPublisherThread}{PlcPublisherThread}}\ :\ \textcolor{keyword}{public}\ QThread\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classPlcPublisherThread}{PlcPublisherThread}}(\textcolor{keyword}{const}\ QString\&\ topicName,\ QObject*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{classPlcPublisherThread}{\string~PlcPublisherThread}}();}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ enqueueAction(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPlcActionData}{PlcActionData}}\&\ actionData);\ \ \textcolor{comment}{//\ Public\ method\ to\ enqueue\ actions}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ run()\ \textcolor{keyword}{override};\ \ \textcolor{comment}{//\ The\ main\ function\ of\ the\ thread}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ QString\ topicName;}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classPlcDDSPublisher}{PlcDDSPublisher}}*\ plcddsPublisher\_;\ \ \textcolor{comment}{//\ Pointer\ to\ the\ DDSPublisher}}
+\DoxyCodeLine{00023\ \};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLCPUBLISHERTHREAD\_H}}
+
+\end{DoxyCode}

@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     lrf(0.0),
     lrf_rdy("OFF"),
     fov(45.0),
-    speed_(10),
+    speed_(0),
     latestSpeed(0),
     lastButtonSpdPlusValue(0),
     lastButtonSpdMinusValue(0),
@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
     initVideoStream();
     initDDS();
     initLabels();
+
 }
 
 
@@ -63,15 +64,119 @@ void MainWindow::initVideoStream() {
     // Initialize and start video streaming thread
     // Connect signals from the video streaming thread to slots in this class for frame updates
     //VideoCapture *videoCapture = new VideoCapture(this);
-    CaptureVideoCuda *videoCapture = new CaptureVideoCuda();
-    //connect(captureThread, &CaptureVideoCuda::ShutdownRequested, this, &YourClass::HandleCaptureThreadShutdown);
-    connect(this, &MainWindow::detectionToggled, videoCapture, &CaptureVideoCuda::toggleDetection);
-    connect(this, &MainWindow::trackingToggled, videoCapture, &CaptureVideoCuda::toggleTracking);
+    //CaptureVideoCuda *videoCapture = new CaptureVideoCuda();
 
-    connect(videoCapture, &CaptureVideoCuda::frameReady, ui->ui_widget, &VideoGLWidget_gl::updateFrame);
-    videoCapture->start(); // Start the video capture thread
+
+
+
+    //connect(captureThread, &CaptureVideoCuda::ShutdownRequested, this, &YourClass::HandleCaptureThreadShutdown);
+    //connect(this, &MainWindow::detectionToggled, videoCapture, &CaptureVideoCuda::toggleDetection);
+    //connect(this, &MainWindow::trackingToggled, videoCapture, &CaptureVideoCuda::toggleTracking);
+    //trackingManager = new TrackingManager(this); // 'this' ensures it's parented to the MainWindow for memory management
+    //cameraController = new CameraController(this);
+    //connect(this, &MainWindow::trackingToggled, trackingManager, &TrackingManager::toggleTracking);
+    // Connecting the TrackingManager to the MainWindow and CameraController
+    //connect(trackingManager, &TrackingManager::primaryObjectUpdated, this, &MainWindow::onPrimaryObjectUpdated);
+    //connect(trackingManager, &TrackingManager::primaryObjectUpdated, cameraController, &CameraController::adjustCamera);
+    //connect(trackingManager, &TrackingManager::trackUpdated, this, &MainWindow::updateTrackButton, Qt::QueuedConnection);
+    //bool connected = connect(trackingManager, &TrackingManager::trackUpdated, this, &MainWindow::updateTrackButton, Qt::QueuedConnection);
+    //Q_ASSERT(connected);
+    //qDebug() << "Connection status is set to :" << connected;
+    //connect(ui->testButton, &QPushButton::clicked, this, &MainWindow::triggerTrackingManagerTest);
+
+    //connect(videoCapture, &CaptureVideoCuda::frameReady, ui->ui_widget, &VideoGLWidget_gl::updateFrame);
+    //videoCapture->start(); // Start the video capture thread
+
+
+    cameraThread = new CameraThread(this);
+    connect(cameraThread, &CameraThread::cameraWidgetReady, this, &MainWindow::addCameraWidgetToLayout);
+    //connect(this, &MainWindow::primaryObjectPositionUpdated, cameraThread, &CameraThread::handlePrimaryObjectPositionUpdate);
+    //connect(this, SIGNAL(primaryObjectPositionUpdated(QPoint)), cameraThread, SLOT(handlePrimaryObjectPositionUpdate(QPoint)));
+    connect(this, &MainWindow::primaryObjectPositionUpdated, cameraThread, &CameraThread::handlePrimaryObjectPositionUpdate);
+    connect(this, &MainWindow::settingParameters, cameraThread, &CameraThread::handleSettingParameters);
+
+    // Inside MainWindow constructor or initialization function
+    //connect(this, &MainWindow::detectionToggled, cameraWidget, &CameraWidget::toggleDetection);
+    //connect(this, &MainWindow::trackingToggled, cameraWidget, &CameraWidget::toggleTracking);
+    cameraThread->start(); // Start the thread    
+
 }
 
+void MainWindow::addCameraWidgetToLayout(CameraWidget *cameraWidget) {
+    QVBoxLayout *layout = new QVBoxLayout(ui->widget2); // Use the central widget's layout
+    layout->addWidget(cameraWidget);
+}
+
+void MainWindow::onPrimaryObjectUpdated(const ObjectInfo& primaryObject) {
+
+    QString statusText = QString("Primary Object - ID: %1, Position: (%2, %3), Size: (%4x%5)")
+                         .arg(primaryObject.uniqueId)
+                         .arg(primaryObject.bboxLeft).arg(primaryObject.bboxTop)
+                         .arg(primaryObject.bboxRight).arg(primaryObject.bboxBottom);
+    qDebug() << statusText ;
+
+    QPoint targetPosition((primaryObject.bboxLeft + primaryObject.bboxRight)/2, (primaryObject.bboxTop + primaryObject.bboxBottom)/2);
+    emit primaryObjectPositionUpdated(targetPosition);
+}
+
+void MainWindow::updateTrackButton(const ObjectInfo& trackInfo) {
+    // Check if a button for this track already exists, update it if so, or create a new one if not.
+    // You might use the trackInfo.uniqueId as a key to identify buttons for each track.
+    qDebug() << "QPushButton set to:";
+    qDebug() << "QPushButton set to:" << trackInfo.uniqueId;
+    QPushButton* button = findButtonForTrack(trackInfo.uniqueId);
+    if (!button) {
+        button = new QPushButton(QString::number(trackInfo.uniqueId), this);
+        button->setStyleSheet("QPushButton { color: green; font-size: 30px; }"); // Set text color to green and font size to 30px
+
+        ui->trackButtonLayout->addWidget(button);
+        trackButtons[trackInfo.uniqueId] = button; // Add the button to the map
+
+        connect(button, &QPushButton::clicked, [this, trackInfo]() {
+            focusCameraOnTrack(trackInfo);
+        });
+    } else {
+        // If the button already exists, you can update its properties as needed
+        button->setText(QString::number(trackInfo.uniqueId)); // Update button text to uniqueId
+        button->setStyleSheet("QPushButton { color: green; font-size: 30px; }"); // Update text color to green and font size to 30px
+        qDebug() << "Button already exist " << trackInfo.uniqueId;
+    }
+}
+ 
+
+
+QPushButton* MainWindow::findButtonForTrack(unsigned long uniqueId) {
+    return trackButtons.value(uniqueId, nullptr); // Returns nullptr if uniqueId is not found
+}
+
+/*QPushButton* MainWindow::findButtonForTrack(unsigned long uniqueId) {
+    // Assuming ui->trackButtonLayout is a layout containing the buttons
+    for (int i = 0; i < ui->trackButtonLayout->count(); ++i) {
+        QWidget* widget = ui->trackButtonLayout->itemAt(i)->widget();
+        if (widget) {
+            QPushButton* button = qobject_cast<QPushButton*>(widget);
+            if (button && button->objectName() == QString::number(uniqueId)) {
+                return button; // Found the button for the track
+            }
+        }
+    }
+    return nullptr; // No button found for the track
+}*/
+
+void MainWindow::focusCameraOnTrack(const ObjectInfo& trackInfo) {
+    QString statusText = QString(" focusCameraOnTrack  Primary Object - ID: %1, Position: (%2, %3), Size: (%4x%5)")
+                         .arg(trackInfo.uniqueId)
+                         .arg(trackInfo.bboxLeft).arg(trackInfo.bboxTop)
+                         .arg(trackInfo.bboxRight).arg(trackInfo.bboxBottom);
+    qDebug() << statusText ;
+
+    //QPoint targetPosition((trackInfo.bboxLeft + trackInfo.bboxRight)/2, (trackInfo.bboxTop + trackInfo.bboxBottom)/2);
+    //emit primaryObjectPositionUpdated(targetPosition);
+
+}
+void MainWindow::triggerTrackingManagerTest() {
+    trackingManager->testProcessObjectMetadata();
+}
 void MainWindow::initDDS() {
     // Initialize the MotorSubscriberThread
     motorSubscriberThread_ = new MotorSubscriberThread("ResponseTopic", this);
@@ -172,6 +277,7 @@ void MainWindow::onJoyDataReceived(const JoystickData& data) {
     // Increase speed
     if (buttonSpdPlusValue == 1 && lastButtonSpdPlusValue == 0) {
         this->speed_ += 1000;  // Increase speed
+        this->speed_ = std::max(0, std::min(this->speed_, 10000));
         updateSpeedLabel();  // Update the speed label on the UI
         qDebug() << this->speed_;  // Print the current speed for debugging
     }
@@ -180,13 +286,14 @@ void MainWindow::onJoyDataReceived(const JoystickData& data) {
     // Decrease speed
     if (buttonSpdMinusValue == 1 && lastButtonSpdMinusValue == 0) {
         this->speed_ -= 1000;  // Decrease speed
+        this->speed_ = std::max(0, std::min(this->speed_, 10000));
         updateSpeedLabel();  // Update the speed label on the UI
         qDebug() << this->speed_;  // Print the current speed for debugging
     }
     lastButtonSpdMinusValue = buttonSpdMinusValue;  // Update the last button state
 
     // Ensure speed is within bounds [0, 10000]
-    speed_ = std::max(0, std::min(speed_, 10000));
+    
 
 
     // Process axis state for motor speed control
@@ -226,6 +333,12 @@ void MainWindow::onJoyDataReceived(const JoystickData& data) {
         plc_PublishAction(plcActionData) ;
         last_buttonFireValue = buttonFireValue;  
         }    
+
+    emit settingParameters(this->burstModes[currentBurstModeIndex],
+                     this->track_state == "ON",
+                     this->detect_state == "ON",
+                     this->stab_state == "ON",
+                     this->speed_);
 
 }
 
@@ -352,9 +465,9 @@ void MainWindow::initLabels() {
 
 MainWindow::~MainWindow()
 {
-    if (videoCapture->isRunning()) {
+    //if (videoCapture->isRunning()) {
         //videoCapture->stop();
-    }
+    //}
     // Ensure the thread is properly stopped and cleaned up
     motorSubscriberThread_->stop();
     motorSubscriberThread_->wait();

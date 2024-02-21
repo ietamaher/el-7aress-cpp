@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,47,152,87"/>
+<area shape="rect" id="Node000001" href="$de/d2d/classJoystickDataPubSubType.html" title="This class represents the TopicDataType of the type JoystickData defined by the user in the IDL file." alt="" coords="208,5,391,31"/>
+<area shape="poly" id="edge6_Node000000_Node000001" title=" " alt="" coords="165,45,241,28,243,33,166,51"/>
+<area shape="rect" id="Node000002" href="$d0/de8/classQuery__msgPubSubType.html" title="This class represents the TopicDataType of the type Query_msg defined by the user in the IDL file." alt="" coords="212,55,387,80"/>
+<area shape="poly" id="edge7_Node000000_Node000002" title=" " alt="" coords="166,65,212,65,212,70,166,70"/>
+<area shape="rect" id="Node000003" href="$d2/d1d/classResponse__msgPubSubType.html" title="This class represents the TopicDataType of the type Response_msg defined by the user in the IDL file." alt="" coords="200,104,399,129"/>
+<area shape="poly" id="edge8_Node000000_Node000003" title=" " alt="" coords="166,84,243,101,241,107,165,89"/>
+</map>

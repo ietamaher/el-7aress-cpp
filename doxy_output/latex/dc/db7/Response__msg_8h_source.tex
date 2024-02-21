@@ -1,0 +1,134 @@
+\doxysection{Response\+\_\+msg.\+h}
+\hypertarget{Response__msg_8h_source}{}\label{Response__msg_8h_source}\mbox{\hyperlink{Response__msg_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ 2016\ Proyectos\ y\ Sistemas\ de\ Mantenimiento\ SL\ (eProsima).}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ \_FAST\_DDS\_GENERATED\_RESPONSE\_MSG\_H\_}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ \_FAST\_DDS\_GENERATED\_RESPONSE\_MSG\_H\_}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <array>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <bitset>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <cstdint>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <fastcdr/cdr/fixed\_size\_string.hpp>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <fastcdr/xcdr/external.hpp>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <fastcdr/xcdr/optional.hpp>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#if\ defined(EPROSIMA\_USER\_DLL\_EXPORT)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ eProsima\_user\_DllExport\ \_\_declspec(\ dllexport\ )}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ eProsima\_user\_DllExport}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ EPROSIMA\_USER\_DLL\_EXPORT}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ eProsima\_user\_DllExport}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ \_WIN32}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#if\ defined(EPROSIMA\_USER\_DLL\_EXPORT)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#if\ defined(RESPONSE\_MSG\_SOURCE)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ RESPONSE\_MSG\_DllAPI\ \_\_declspec(\ dllexport\ )}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ RESPONSE\_MSG\_DllAPI\ \_\_declspec(\ dllimport\ )}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ RESPONSE\_MSG\_SOURCE}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ RESPONSE\_MSG\_DllAPI}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ EPROSIMA\_USER\_DLL\_EXPORT}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ RESPONSE\_MSG\_DllAPI}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_WIN32}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{namespace\ }eprosima\ \{}
+\DoxyCodeLine{00063\ \textcolor{keyword}{namespace\ }fastcdr\ \{}
+\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }Cdr;}
+\DoxyCodeLine{00065\ \textcolor{keyword}{class\ }CdrSizeCalculator;}
+\DoxyCodeLine{00066\ \}\ \textcolor{comment}{//\ namespace\ fastcdr}}
+\DoxyCodeLine{00067\ \}\ \textcolor{comment}{//\ namespace\ eprosima}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classResponse__msg}{Response\_msg}}}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classResponse__msg_a45087cc0625aad04c01355484494c9bb}{Response\_msg}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classResponse__msg_a02d97b0dd0e716f2376426a012627c8a}{\string~Response\_msg}}();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00095\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classResponse__msg_a24af33de5dcd69e1bf6f80f620a4e460}{Response\_msg}}(}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ x);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classResponse__msg_a3239ac543cc83acbfd4515d3fc2ff40f}{Response\_msg}}(}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\&\ x)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ \mbox{\hyperlink{classResponse__msg_afa2ca86c98f3f1554c664b85bf1b1873}{operator\ =}}(}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ x);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00116\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ \mbox{\hyperlink{classResponse__msg_afa2ca86c98f3f1554c664b85bf1b1873}{operator\ =}}(}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\&\ x)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00123\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classResponse__msg_a9a8f800a010dbf57be89518ff5680232}{operator\ ==}}(}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ x)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00130\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classResponse__msg_a17f68a98f1c018c82304c94a452f5d48}{operator\ !=}}(}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ x)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00137\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classResponse__msg_aaca1ddcd511e24fd2076823864ad65ec}{data}}(}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::array<uint32\_t,\ 64>\&\ \_data);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00144\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classResponse__msg_a8ba78bf98b1904fcbf700a3b613a8ebe}{data}}(}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ std::array<uint32\_t,\ 64>\&\&\ \_data);}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00151\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keyword}{const}\ std::array<uint32\_t,\ 64>\&\ \mbox{\hyperlink{classResponse__msg_a6ef0ad77710964a8eba6c9531b261b3c}{data}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00157\ \ \ \ \ eProsima\_user\_DllExport\ std::array<uint32\_t,\ 64>\&\ \mbox{\hyperlink{classResponse__msg_aaeedc3f4c04e46305a943e785807f479}{data}}();}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00164\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classResponse__msg_aa8f7c363285a7dbc518f047d6b5f7a86}{slave\_id}}(}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_slave\_id);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00171\ \ \ \ \ eProsima\_user\_DllExport\ uint32\_t\ \mbox{\hyperlink{classResponse__msg_aceb871324f45824dc6ee9b00916c6f9a}{slave\_id}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00177\ \ \ \ \ eProsima\_user\_DllExport\ uint32\_t\&\ \mbox{\hyperlink{classResponse__msg_af4a377914e0ae6812d2366604bc162d6}{slave\_id}}();}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00184\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classResponse__msg_acc8a81a755f1d03bfa4cbec5cc521559}{func\_code}}(}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ \_func\_code);}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00191\ \ \ \ \ eProsima\_user\_DllExport\ uint32\_t\ \mbox{\hyperlink{classResponse__msg_a4beaff371d5fd548f03d924a39d096b7}{func\_code}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00197\ \ \ \ \ eProsima\_user\_DllExport\ uint32\_t\&\ \mbox{\hyperlink{classResponse__msg_a9ddca79b1860644f21c97b9ad85f6597}{func\_code}}();}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ std::array<uint32\_t,\ 64>\ m\_data\{0\};}
+\DoxyCodeLine{00202\ \ \ \ \ uint32\_t\ m\_slave\_id\{0\};}
+\DoxyCodeLine{00203\ \ \ \ \ uint32\_t\ m\_func\_code\{0\};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_FAST\_DDS\_GENERATED\_RESPONSE\_MSG\_H\_}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ }
+
+\end{DoxyCode}

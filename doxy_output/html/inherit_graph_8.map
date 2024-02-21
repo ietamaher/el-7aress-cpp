@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,31,151,56"/>
+<area shape="rect" id="Node000001" href="$dd/dc4/classVideoGLWidget.html" title=" " alt="" coords="208,5,329,31"/>
+<area shape="poly" id="edge15_Node000000_Node000001" title=" " alt="" coords="164,29,207,23,208,29,165,35"/>
+<area shape="rect" id="Node000003" href="$dd/dbb/classVideoGLWidget__gl.html" title=" " alt="" coords="199,55,339,80"/>
+<area shape="poly" id="edge16_Node000000_Node000003" title=" " alt="" coords="165,52,199,56,198,61,164,57"/>
+<area shape="rect" id="Node000004" href="$df/dbc/classVideoWidget.html" title=" " alt="" coords="216,104,321,129"/>
+<area shape="poly" id="edge17_Node000000_Node000004" title=" " alt="" coords="134,58,152,65,200,89,232,102,230,106,198,94,150,70,132,63"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="14,80,142,105"/>
+<area shape="poly" id="edge18_Node000002_Node000001" title=" " alt="" coords="130,73,150,65,198,40,227,28,229,33,200,44,152,70,132,78"/>
+<area shape="poly" id="edge19_Node000002_Node000003" title=" " alt="" coords="155,80,198,74,199,79,156,85"/>
+<area shape="poly" id="edge20_Node000002_Node000004" title=" " alt="" coords="157,100,216,107,216,113,156,105"/>
+</map>

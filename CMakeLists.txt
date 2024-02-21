@@ -19,7 +19,7 @@ endif()
 find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 
-find_package(Qt5 COMPONENTS Widgets OpenGL REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets OpenGL REQUIRED)
 find_package(OpenGL REQUIRED)  # Add this line
 
 find_package(jetson-utils)
@@ -32,6 +32,25 @@ find_package(CUDA)
 # add directory for libnvbuf-utils to program
 link_directories(/usr/lib/aarch64-linux-gnu/tegra)
 include_directories(/usr/local/cuda/include)
+
+
+#Find GStreamer
+find_package(PkgConfig)
+pkg_check_modules(GST REQUIRED gstreamer-1.0 gstreamer-video-1.0)
+pkg_check_modules(GST_APP REQUIRED gstreamer-app-1.0)
+
+# Include GStreamer and GStreamer-app headers
+include_directories(${GST_INCLUDE_DIRS} ${GST_APP_INCLUDE_DIRS})
+
+# Link GStreamer and GStreamer-app libraries
+link_directories(${GST_LIBRARY_DIRS} ${GST_APP_LIBRARY_DIRS})
+
+find_package(CUDA ${CUDA_VER} REQUIRED)
+include_directories(${CUDA_INCLUDE_DIRS})
+
+include_directories(/opt/nvidia/deepstream/deepstream-6.0/sources/includes)
+link_directories(/opt/nvidia/deepstream/deepstream-6.0/lib)
+
 
 # Set C++11
 include(CheckCXXCompilerFlag)
@@ -80,10 +99,33 @@ add_executable(el-7ress-cpp
     videocapture_cuda.h videocapture_cuda.cpp
     videoglwidget.h videoglwidget.cpp
     videoglwidget_gl.h videoglwidget_gl.cpp
-
+    camerawidget.h
+    camerawidget.cpp
+    camerathread.h  
+    camerathread.cpp  
+    trackingmanager.h trackingmanager.cpp
+    track.h track.cpp
+    objectinfo.h
+    cameracontroller.h cameracontroller.cpp
+    #overlaywidget.h overlaywidget.cpp    
 )
 
-
-target_link_libraries(el-7ress-cpp ${OpenCV_LIBS} Qt5::Widgets Qt5::OpenGL OpenGL::GL fastrtps fastcdr jetson-inference jetson-utils cudart)
+target_compile_options(el-7ress-cpp PRIVATE ${GST_CFLAGS}) 
+target_link_libraries(el-7ress-cpp 
+    ${OpenCV_LIBS} Qt5::Widgets Qt5::OpenGL OpenGL::GL 
+    fastrtps 
+    fastcdr 
+    jetson-inference 
+    jetson-utils 
+    cudart
+    ${GST_LIBRARIES}
+    ${GST_APP_LIBRARIES}
+    ${CUDA_LIBRARIES}
+    cudart
+    nvdsgst_meta
+    nvds_meta
+    cuda   
+    
+    )
 
  

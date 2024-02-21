@@ -1,0 +1,33 @@
+\doxysection{actiondata.\+h}
+\hypertarget{actiondata_8h_source}{}\label{actiondata_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ actiondata.h}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ ACTIONDATA\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ ACTIONDATA\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QVariant>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QMap>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QMetaType>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structActionData}{ActionData}}\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ QString\ command\_type;\ \ \textcolor{comment}{//\ e.g.,\ "{}move"{},\ "{}stop"{},\ "{}set\_speed"{},\ "{}set\_angle"{}}}
+\DoxyCodeLine{00012\ \ \ \ \ QString\ target;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ e.g.,\ "{}motor1"{},\ "{}PLC1"{}}}
+\DoxyCodeLine{00013\ \ \ \ \ QMap<QString,\ QVariant>\ parameters;\ \ \textcolor{comment}{//\ e.g.,\ \{"{}speed"{}:\ 100,\ "{}angle"{}:\ 45\}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{structActionData}{ActionData}}()\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ Custom\ constructor\ to\ initialize\ the\ members}}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{structActionData}{ActionData}}(\textcolor{keyword}{const}\ QString\&\ cmdType,\ \textcolor{keyword}{const}\ QString\&\ tgt,\ \textcolor{keyword}{const}\ QMap<QString,\ QVariant>\&\ params)\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ :\ command\_type(cmdType),\ target(tgt),\ parameters(params)\ \{\}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{structActionData}{\string~ActionData}}()\ \textcolor{keyword}{noexcept}\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Make\ ActionData\ known\ to\ Qt's\ meta-\/object\ system\ for\ signal-\/slot\ mechanism}}
+\DoxyCodeLine{00026\ Q\_DECLARE\_METATYPE(\mbox{\hyperlink{structActionData}{ActionData}})}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ ACTIONDATA\_H}}
+
+\end{DoxyCode}

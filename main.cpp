@@ -3,8 +3,11 @@
 
 #include <QApplication>
 
-int main(int argc, char *argv[])
+#include <gst/gst.h>
+
+int main(int argc, char *argv[]) 
 {
+    gst_init(&argc, &argv); // Initialize GStreamer
     QApplication a(argc, argv);
     MainWindow w;
     w.show();

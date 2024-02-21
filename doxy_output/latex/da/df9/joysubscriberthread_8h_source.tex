@@ -1,0 +1,36 @@
+\doxysection{joysubscriberthread.\+h}
+\hypertarget{joysubscriberthread_8h_source}{}\label{joysubscriberthread_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ JOYSUBSCRIBERTHREAD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ JOYSUBSCRIBERTHREAD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{JoystickData_8h}{JoystickData.h}}"{}}\ \ \textcolor{comment}{//\ Assuming\ this\ is\ a\ C++\ representation\ of\ your\ DDS\ message}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}joyddssubscriber.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJoySubscriberThread}{JoySubscriberThread}}\ :\ \textcolor{keyword}{public}\ QThread\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classJoySubscriberThread}{JoySubscriberThread}}(\textcolor{keyword}{const}\ QString\&\ topicName,\ QObject*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{classJoySubscriberThread}{\string~JoySubscriberThread}}();}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ stop();\ \ \textcolor{comment}{//\ Method\ to\ stop\ the\ thread}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ handleDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJoystickData}{JoystickData}}\&\ data);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ signals:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ joyDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJoystickData}{JoystickData}}\&\ data);\ \ \textcolor{comment}{//\ Signal\ to\ emit\ when\ new\ data\ is\ received}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ run()\ \textcolor{keyword}{override};\ \ \textcolor{comment}{//\ The\ thread's\ main\ function}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ \ \ QString\ topicName;}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classJoyDDSSubscriber}{JoyDDSSubscriber}}*\ subscriber;\ \ \textcolor{comment}{//\ Pointer\ to\ the\ DDS\ subscriber}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ stopped;\ \ \textcolor{comment}{//\ Flag\ to\ control\ the\ thread's\ execution}}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JOYSUBSCRIBERTHREAD\_H}}
+
+\end{DoxyCode}

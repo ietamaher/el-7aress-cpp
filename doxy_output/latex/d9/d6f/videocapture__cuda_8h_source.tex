@@ -1,0 +1,74 @@
+\doxysection{videocapture\+\_\+cuda.\+h}
+\hypertarget{videocapture__cuda_8h_source}{}\label{videocapture__cuda_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VIDEOCAPTURE\_CUDA\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VIDEOCAPTURE\_CUDA\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QImage>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/videoSource.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/videoOutput.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/cudaUtility.h>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/cudaMappedMemory.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/cudaNormalize.h>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/cudaResize.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/cudaCrop.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/cudaDraw.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/imageIO.h>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <jetson-\/utils/cudaFont.h>}\ \textcolor{comment}{//\ For\ drawing\ text\ if\ needed}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <jetson-\/inference/detectNet.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <jetson-\/inference/objectTrackerIOU.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <signal.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#undef\ Log\ }}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCaptureVideoCuda}{CaptureVideoCuda}}\ :\ \textcolor{keyword}{public}\ QThread\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{comment}{//static\ int\ signalFd[2];\ //\ Pipe\ file\ descriptors}}
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classCaptureVideoCuda}{CaptureVideoCuda}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});\ \textcolor{comment}{//\ Constructor\ with\ optional\ parent}}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classCaptureVideoCuda}{\string~CaptureVideoCuda}}();\ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ run()\ \textcolor{keyword}{override};\ \textcolor{comment}{//\ Override\ the\ QThread's\ run()\ method}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//static\ void\ SignalHandler(int\ signo);}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//void\ SetupSignalHandler();}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ running;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ enableDetection;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ enableTracking;}
+\DoxyCodeLine{00043\ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//void\ SetupSignalHandler();}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{bool}\ InitializeVideoSource();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//bool\ InitializeVideoOutput(const\ commandLine\&\ cmdLine);}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{bool}\ InitializeDetectNet();}
+\DoxyCodeLine{00048\ \ \ \ \ QImage\ ConvertToQImage(uchar3*\ image,\ \textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{00049\ \ \ \ \ videoSource*\ input\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00050\ \ \ \ \ videoOutput*\ output\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00051\ \ \ \ \ detectNet*\ net\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ DetectAndRender(uchar3*\ image);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ stop();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ signals:}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ frameReady(QImage\ frame);\ \textcolor{comment}{//\ Signal\ to\ emit\ when\ a\ new\ frame\ is\ ready}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ ErrorOccurred(QString\ error);\ \textcolor{comment}{//\ Signal\ to\ emit\ in\ case\ of\ error}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//void\ ShutdownRequested();\ //\ Signal\ to\ indicate\ a\ shutdown\ has\ been\ requested}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//void\ HandleShutdown();\ //\ Slot\ to\ handle\ cleanup\ and\ shutdown\ \ \ \ }}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleDetection(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleTracking(\textcolor{keywordtype}{bool}\ enabled);\ \ \ \ }
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ VIDEOCAPTURE\_CUDA\_H}}
+
+\end{DoxyCode}

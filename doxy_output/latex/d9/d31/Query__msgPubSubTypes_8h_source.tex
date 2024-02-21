@@ -1,0 +1,125 @@
+\doxysection{Query\+\_\+msg\+Pub\+Sub\+Types.\+h}
+\hypertarget{Query__msgPubSubTypes_8h_source}{}\label{Query__msgPubSubTypes_8h_source}\mbox{\hyperlink{Query__msgPubSubTypes_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ 2016\ Proyectos\ y\ Sistemas\ de\ Mantenimiento\ SL\ (eProsima).}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifndef\ \_FAST\_DDS\_GENERATED\_QUERY\_MSG\_PUBSUBTYPES\_H\_}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ \_FAST\_DDS\_GENERATED\_QUERY\_MSG\_PUBSUBTYPES\_H\_}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <fastdds/dds/core/policy/QosPolicies.hpp>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <fastdds/dds/topic/TopicDataType.hpp>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <fastdds/rtps/common/InstanceHandle.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <fastdds/rtps/common/SerializedPayload.h>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <fastrtps/utils/md5.h>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Query__msg_8h}{Query\_msg.h}}"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#if\ !defined(GEN\_API\_VER)\ ||\ (GEN\_API\_VER\ !=\ 2)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#error\ \(\backslash\)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ Generated\ Query\_msg\ is\ not\ compatible\ with\ current\ installed\ Fast\ DDS.\ Please,\ regenerate\ it\ with\ fastddsgen.}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ GEN\_API\_VER}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classQuery__msgPubSubType}{Query\_msgPubSubType}}\ :\ \textcolor{keyword}{public}\ eprosima::fastdds::dds::TopicDataType}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classQuery__msg}{Query\_msg}}\ \mbox{\hyperlink{classQuery__msg}{type}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classQuery__msgPubSubType}{Query\_msgPubSubType}}();}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ eProsima\_user\_DllExport\ \mbox{\hyperlink{classQuery__msgPubSubType}{\string~Query\_msgPubSubType}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{bool}\ serialize(}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ eprosima::fastrtps::rtps::SerializedPayload\_t*\ payload)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ serialize(data,\ payload,\ eprosima::fastdds::dds::DEFAULT\_DATA\_REPRESENTATION);}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{bool}\ serialize(}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data,}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ eprosima::fastrtps::rtps::SerializedPayload\_t*\ payload,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ eprosima::fastdds::dds::DataRepresentationId\_t\ data\_representation)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{bool}\ deserialize(}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ eprosima::fastrtps::rtps::SerializedPayload\_t*\ payload,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ eProsima\_user\_DllExport\ std::function<uint32\_t()>\ getSerializedSizeProvider(}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data)\textcolor{keyword}{\ override}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getSerializedSizeProvider(data,\ eprosima::fastdds::dds::DEFAULT\_DATA\_REPRESENTATION);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ eProsima\_user\_DllExport\ std::function<uint32\_t()>\ getSerializedSizeProvider(}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data,}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ eprosima::fastdds::dds::DataRepresentationId\_t\ data\_representation)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{bool}\ getKey(}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ eprosima::fastrtps::rtps::InstanceHandle\_t*\ ihandle,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ force\_md5\ =\ \textcolor{keyword}{false})\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{void}*\ createData()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keywordtype}{void}\ deleteData(}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ TOPIC\_DATA\_TYPE\_API\_HAS\_IS\_BOUNDED}}
+\DoxyCodeLine{00094\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ is\_bounded()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ TOPIC\_DATA\_TYPE\_API\_HAS\_IS\_BOUNDED}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#ifdef\ TOPIC\_DATA\_TYPE\_API\_HAS\_IS\_PLAIN}}
+\DoxyCodeLine{00102\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ is\_plain()\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ is\_plain(}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ eprosima::fastdds::dds::DataRepresentationId\_t\ data\_representation)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00109\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(data\_representation);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ TOPIC\_DATA\_TYPE\_API\_HAS\_IS\_PLAIN}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#ifdef\ TOPIC\_DATA\_TYPE\_API\_HAS\_CONSTRUCT\_SAMPLE}}
+\DoxyCodeLine{00117\ \ \ \ \ eProsima\_user\_DllExport\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ construct\_sample(}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ memory)\textcolor{keyword}{\ const\ override}}
+\DoxyCodeLine{00119\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{void}\textcolor{keyword}{>}(memory);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ TOPIC\_DATA\_TYPE\_API\_HAS\_CONSTRUCT\_SAMPLE}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ MD5\ m\_md5;}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ m\_keyBuffer;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_FAST\_DDS\_GENERATED\_QUERY\_MSG\_PUBSUBTYPES\_H\_}}
+\DoxyCodeLine{00132\ }
+
+\end{DoxyCode}

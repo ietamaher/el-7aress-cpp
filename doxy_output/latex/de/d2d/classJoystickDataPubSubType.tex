@@ -1,0 +1,81 @@
+\doxysection{Joystick\+Data\+Pub\+Sub\+Type Class Reference}
+\hypertarget{classJoystickDataPubSubType}{}\label{classJoystickDataPubSubType}\index{JoystickDataPubSubType@{JoystickDataPubSubType}}
+
+
+This class represents the Topic\+Data\+Type of the type \doxylink{classJoystickData}{Joystick\+Data} defined by the user in the IDL file.  
+
+
+
+
+{\ttfamily \#include $<$Joystick\+Data\+Pub\+Sub\+Types.\+h$>$}
+
+
+
+Inheritance diagram for Joystick\+Data\+Pub\+Sub\+Type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{dc/dcd/classJoystickDataPubSubType__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Joystick\+Data\+Pub\+Sub\+Type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{d2/dd2/classJoystickDataPubSubType__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJoystickDataPubSubType_a7b0fa6961b2aa964aa43914a31914957}\label{classJoystickDataPubSubType_a7b0fa6961b2aa964aa43914a31914957} 
+typedef \mbox{\hyperlink{classJoystickData}{Joystick\+Data}} {\bfseries type}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJoystickDataPubSubType_a3aaa4160b08d826f781ca02e82d888ec}\label{classJoystickDataPubSubType_a3aaa4160b08d826f781ca02e82d888ec} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries serialize} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload) override
+\item 
+\Hypertarget{classJoystickDataPubSubType_a5cad3ea71c1fef6c827d3aecafeee93d}\label{classJoystickDataPubSubType_a5cad3ea71c1fef6c827d3aecafeee93d} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries serialize} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload, eprosima\+::fastdds\+::dds\+::\+Data\+Representation\+Id\+\_\+t data\+\_\+representation) override
+\item 
+\Hypertarget{classJoystickDataPubSubType_ae58462880f27c99f48354788dd0302c3}\label{classJoystickDataPubSubType_ae58462880f27c99f48354788dd0302c3} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries deserialize} (eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload, void \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classJoystickDataPubSubType_aa95991b1e456041920c8af1fd283a6ed}\label{classJoystickDataPubSubType_aa95991b1e456041920c8af1fd283a6ed} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export std\+::function$<$ uint32\+\_\+t()$>$ {\bfseries get\+Serialized\+Size\+Provider} (void \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classJoystickDataPubSubType_a34c750f8d6d688dc24d67f12c5017163}\label{classJoystickDataPubSubType_a34c750f8d6d688dc24d67f12c5017163} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export std\+::function$<$ uint32\+\_\+t()$>$ {\bfseries get\+Serialized\+Size\+Provider} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastdds\+::dds\+::\+Data\+Representation\+Id\+\_\+t data\+\_\+representation) override
+\item 
+\Hypertarget{classJoystickDataPubSubType_a43b989bfada7441c27222d0ef7c9e894}\label{classJoystickDataPubSubType_a43b989bfada7441c27222d0ef7c9e894} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries get\+Key} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Instance\+Handle\+\_\+t \texorpdfstring{$\ast$}{*}ihandle, bool force\+\_\+md5=false) override
+\item 
+\Hypertarget{classJoystickDataPubSubType_aee8b8e9dcf398b991b528e99ec52e7bb}\label{classJoystickDataPubSubType_aee8b8e9dcf398b991b528e99ec52e7bb} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export void \texorpdfstring{$\ast$}{*} {\bfseries create\+Data} () override
+\item 
+\Hypertarget{classJoystickDataPubSubType_a99d1f304d1be52fa6995a0a28b9c6db8}\label{classJoystickDataPubSubType_a99d1f304d1be52fa6995a0a28b9c6db8} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export void {\bfseries delete\+Data} (void \texorpdfstring{$\ast$}{*}data) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classJoystickDataPubSubType_a8f12aaefb907b3f47ddb47e4f977da01}\label{classJoystickDataPubSubType_a8f12aaefb907b3f47ddb47e4f977da01} 
+MD5 {\bfseries m\+\_\+md5}
+\item 
+\Hypertarget{classJoystickDataPubSubType_a541df6b4872c3c561f23132a3e1f68ed}\label{classJoystickDataPubSubType_a541df6b4872c3c561f23132a3e1f68ed} 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+key\+Buffer}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class represents the Topic\+Data\+Type of the type \doxylink{classJoystickData}{Joystick\+Data} defined by the user in the IDL file. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{JoystickDataPubSubTypes_8h}{Joystick\+Data\+Pub\+Sub\+Types.\+h}}\end{DoxyCompactItemize}

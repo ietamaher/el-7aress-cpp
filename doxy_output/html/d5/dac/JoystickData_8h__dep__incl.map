@@ -1,0 +1,12 @@
+<map id="JoystickData.h" name="JoystickData.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="117,5,233,31"/>
+<area shape="rect" id="Node000002" href="$d3/d13/JoystickDataPubSubTypes_8h.html" title=" " alt="" coords="5,79,207,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,43,119,80,115,77,153,39"/>
+<area shape="rect" id="Node000004" href="$da/df9/joysubscriberthread_8h_source.html" title=" " alt="" coords="94,225,257,251"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="199,39,212,57,222,78,226,99,226,121,217,163,201,200,186,226,181,224,196,197,212,161,221,120,221,100,217,80,207,60,194,42"/>
+<area shape="rect" id="Node000003" href="$d1/d4c/joyddssubscriber_8h_source.html" title=" " alt="" coords="49,152,193,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="114,117,121,151,116,152,109,118"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="140,187,169,224,164,227,136,190"/>
+<area shape="rect" id="Node000005" href="$d9/d53/mainwindow_8h_source.html" title=" " alt="" coords="117,299,233,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="178,264,178,299,173,299,173,264"/>
+</map>

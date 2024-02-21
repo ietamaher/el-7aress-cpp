@@ -1,0 +1,81 @@
+\doxysection{Response\+\_\+msg\+Pub\+Sub\+Type Class Reference}
+\hypertarget{classResponse__msgPubSubType}{}\label{classResponse__msgPubSubType}\index{Response\_msgPubSubType@{Response\_msgPubSubType}}
+
+
+This class represents the Topic\+Data\+Type of the type \doxylink{classResponse__msg}{Response\+\_\+msg} defined by the user in the IDL file.  
+
+
+
+
+{\ttfamily \#include $<$Response\+\_\+msg\+Pub\+Sub\+Types.\+h$>$}
+
+
+
+Inheritance diagram for Response\+\_\+msg\+Pub\+Sub\+Type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{d9/dbf/classResponse__msgPubSubType__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Response\+\_\+msg\+Pub\+Sub\+Type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{dd/d1c/classResponse__msgPubSubType__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classResponse__msgPubSubType_a98e23d5eed0af09b626bc4dfe6541c95}\label{classResponse__msgPubSubType_a98e23d5eed0af09b626bc4dfe6541c95} 
+typedef \mbox{\hyperlink{classResponse__msg}{Response\+\_\+msg}} {\bfseries type}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classResponse__msgPubSubType_aa122d278d64adf288fd5891c27ac4bdb}\label{classResponse__msgPubSubType_aa122d278d64adf288fd5891c27ac4bdb} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries serialize} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload) override
+\item 
+\Hypertarget{classResponse__msgPubSubType_a7b778d12e467c4c67281f94d0c575b4c}\label{classResponse__msgPubSubType_a7b778d12e467c4c67281f94d0c575b4c} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries serialize} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload, eprosima\+::fastdds\+::dds\+::\+Data\+Representation\+Id\+\_\+t data\+\_\+representation) override
+\item 
+\Hypertarget{classResponse__msgPubSubType_aba880986a86abfa029cdf9b5b7d11160}\label{classResponse__msgPubSubType_aba880986a86abfa029cdf9b5b7d11160} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries deserialize} (eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload, void \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classResponse__msgPubSubType_a6cbd99ea33fbb315d44da17868f025a8}\label{classResponse__msgPubSubType_a6cbd99ea33fbb315d44da17868f025a8} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export std\+::function$<$ uint32\+\_\+t()$>$ {\bfseries get\+Serialized\+Size\+Provider} (void \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classResponse__msgPubSubType_a8f2fae6850abd4e2f38fdaec5799bff5}\label{classResponse__msgPubSubType_a8f2fae6850abd4e2f38fdaec5799bff5} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export std\+::function$<$ uint32\+\_\+t()$>$ {\bfseries get\+Serialized\+Size\+Provider} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastdds\+::dds\+::\+Data\+Representation\+Id\+\_\+t data\+\_\+representation) override
+\item 
+\Hypertarget{classResponse__msgPubSubType_a6d8aa32e70a27a67bf51230afb6a0f66}\label{classResponse__msgPubSubType_a6d8aa32e70a27a67bf51230afb6a0f66} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries get\+Key} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Instance\+Handle\+\_\+t \texorpdfstring{$\ast$}{*}ihandle, bool force\+\_\+md5=false) override
+\item 
+\Hypertarget{classResponse__msgPubSubType_ad38dd43cf5b5b94aa575036629ffdff5}\label{classResponse__msgPubSubType_ad38dd43cf5b5b94aa575036629ffdff5} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export void \texorpdfstring{$\ast$}{*} {\bfseries create\+Data} () override
+\item 
+\Hypertarget{classResponse__msgPubSubType_ae4c4157c199d8e5d7b68b5cb6f8f2e51}\label{classResponse__msgPubSubType_ae4c4157c199d8e5d7b68b5cb6f8f2e51} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export void {\bfseries delete\+Data} (void \texorpdfstring{$\ast$}{*}data) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classResponse__msgPubSubType_a1d379512dc1067525f5a3b5ece74bfb2}\label{classResponse__msgPubSubType_a1d379512dc1067525f5a3b5ece74bfb2} 
+MD5 {\bfseries m\+\_\+md5}
+\item 
+\Hypertarget{classResponse__msgPubSubType_aead4f9d8f0944ce2757b75ea297c6425}\label{classResponse__msgPubSubType_aead4f9d8f0944ce2757b75ea297c6425} 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+key\+Buffer}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class represents the Topic\+Data\+Type of the type \doxylink{classResponse__msg}{Response\+\_\+msg} defined by the user in the IDL file. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Response__msgPubSubTypes_8h}{Response\+\_\+msg\+Pub\+Sub\+Types.\+h}}\end{DoxyCompactItemize}

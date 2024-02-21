@@ -1,0 +1,81 @@
+\doxysection{Query\+\_\+msg\+Pub\+Sub\+Type Class Reference}
+\hypertarget{classQuery__msgPubSubType}{}\label{classQuery__msgPubSubType}\index{Query\_msgPubSubType@{Query\_msgPubSubType}}
+
+
+This class represents the Topic\+Data\+Type of the type \doxylink{classQuery__msg}{Query\+\_\+msg} defined by the user in the IDL file.  
+
+
+
+
+{\ttfamily \#include $<$Query\+\_\+msg\+Pub\+Sub\+Types.\+h$>$}
+
+
+
+Inheritance diagram for Query\+\_\+msg\+Pub\+Sub\+Type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{d8/d62/classQuery__msgPubSubType__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Query\+\_\+msg\+Pub\+Sub\+Type\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{d7/d1d/classQuery__msgPubSubType__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classQuery__msgPubSubType_ae5d0e4b1e80b29ea5a37ab2d5cc9aec8}\label{classQuery__msgPubSubType_ae5d0e4b1e80b29ea5a37ab2d5cc9aec8} 
+typedef \mbox{\hyperlink{classQuery__msg}{Query\+\_\+msg}} {\bfseries type}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classQuery__msgPubSubType_aed546160258967a3496600f9de7bf4c5}\label{classQuery__msgPubSubType_aed546160258967a3496600f9de7bf4c5} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries serialize} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload) override
+\item 
+\Hypertarget{classQuery__msgPubSubType_a2b5f694d9f7666e06b174592abaa6833}\label{classQuery__msgPubSubType_a2b5f694d9f7666e06b174592abaa6833} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries serialize} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload, eprosima\+::fastdds\+::dds\+::\+Data\+Representation\+Id\+\_\+t data\+\_\+representation) override
+\item 
+\Hypertarget{classQuery__msgPubSubType_a3996170e95746658ee05cf60bc9fa266}\label{classQuery__msgPubSubType_a3996170e95746658ee05cf60bc9fa266} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries deserialize} (eprosima\+::fastrtps\+::rtps\+::\+Serialized\+Payload\+\_\+t \texorpdfstring{$\ast$}{*}payload, void \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classQuery__msgPubSubType_a5556b145499668921f5428866fb39c17}\label{classQuery__msgPubSubType_a5556b145499668921f5428866fb39c17} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export std\+::function$<$ uint32\+\_\+t()$>$ {\bfseries get\+Serialized\+Size\+Provider} (void \texorpdfstring{$\ast$}{*}data) override
+\item 
+\Hypertarget{classQuery__msgPubSubType_a73e3dd6e5b9d64109abc6c8e2f099927}\label{classQuery__msgPubSubType_a73e3dd6e5b9d64109abc6c8e2f099927} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export std\+::function$<$ uint32\+\_\+t()$>$ {\bfseries get\+Serialized\+Size\+Provider} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastdds\+::dds\+::\+Data\+Representation\+Id\+\_\+t data\+\_\+representation) override
+\item 
+\Hypertarget{classQuery__msgPubSubType_ae1f2acc098183ea95c6ac7c66871999f}\label{classQuery__msgPubSubType_ae1f2acc098183ea95c6ac7c66871999f} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export bool {\bfseries get\+Key} (void \texorpdfstring{$\ast$}{*}data, eprosima\+::fastrtps\+::rtps\+::\+Instance\+Handle\+\_\+t \texorpdfstring{$\ast$}{*}ihandle, bool force\+\_\+md5=false) override
+\item 
+\Hypertarget{classQuery__msgPubSubType_af8d6b2a2a5d44f3b3c58db8809738ca0}\label{classQuery__msgPubSubType_af8d6b2a2a5d44f3b3c58db8809738ca0} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export void \texorpdfstring{$\ast$}{*} {\bfseries create\+Data} () override
+\item 
+\Hypertarget{classQuery__msgPubSubType_a6638ac215b5afadbd095865efcc202b8}\label{classQuery__msgPubSubType_a6638ac215b5afadbd095865efcc202b8} 
+e\+Prosima\+\_\+user\+\_\+\+Dll\+Export void {\bfseries delete\+Data} (void \texorpdfstring{$\ast$}{*}data) override
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classQuery__msgPubSubType_ab987560de3aeafc712622825bbd18577}\label{classQuery__msgPubSubType_ab987560de3aeafc712622825bbd18577} 
+MD5 {\bfseries m\+\_\+md5}
+\item 
+\Hypertarget{classQuery__msgPubSubType_ad52108b5af68fcd954016d8655e3d4bf}\label{classQuery__msgPubSubType_ad52108b5af68fcd954016d8655e3d4bf} 
+unsigned char \texorpdfstring{$\ast$}{*} {\bfseries m\+\_\+key\+Buffer}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class represents the Topic\+Data\+Type of the type \doxylink{classQuery__msg}{Query\+\_\+msg} defined by the user in the IDL file. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Query__msgPubSubTypes_8h}{Query\+\_\+msg\+Pub\+Sub\+Types.\+h}}\end{DoxyCompactItemize}

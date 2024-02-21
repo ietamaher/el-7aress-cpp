@@ -1,0 +1,28 @@
+\doxysection{camerathread.\+h}
+\hypertarget{camerathread_8h_source}{}\label{camerathread_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CAMERATHREAD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CAMERATHREAD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}camerawidget.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCameraThread}{CameraThread}}\ :\ \textcolor{keyword}{public}\ QThread\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classCameraThread}{CameraThread}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classCameraThread}{\string~CameraThread}}();}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ run()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ signals:}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ cameraWidgetReady(\mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ *cameraWidget);}
+\DoxyCodeLine{00018\ \ \ \ \ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ *cameraWidget;}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CAMERATHREAD\_H}}
+
+\end{DoxyCode}

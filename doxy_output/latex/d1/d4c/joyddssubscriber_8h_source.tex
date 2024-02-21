@@ -1,0 +1,60 @@
+\doxysection{joyddssubscriber.\+h}
+\hypertarget{joyddssubscriber_8h_source}{}\label{joyddssubscriber_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ JOYDDSSUBSCRIBER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ JOYDDSSUBSCRIBER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{JoystickDataPubSubTypes_8h}{JoystickDataPubSubTypes.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <fastdds/dds/domain/DomainParticipant.hpp>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <fastdds/dds/domain/DomainParticipantFactory.hpp>}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <fastdds/dds/subscriber/DataReader.hpp>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <fastdds/dds/subscriber/DataReaderListener.hpp>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <fastdds/dds/subscriber/qos/DataReaderQos.hpp>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <fastdds/dds/subscriber/SampleInfo.hpp>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <fastdds/dds/subscriber/Subscriber.hpp>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#undef\ Log\ }}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ namespace\ }eprosima::fastdds::dds;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classjoyReaderListener}{joyReaderListener}}\ :\ \textcolor{keyword}{public}\ DataReaderListener\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classjoyReaderListener}{joyReaderListener}}(std::function<\textcolor{keywordtype}{void}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJoystickData}{JoystickData}}\&)>\ callback);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_data\_available(DataReader*\ reader)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ on\_subscription\_matched(DataReader*,\ \textcolor{keyword}{const}\ SubscriptionMatchedStatus\&\ info)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ std::function<void(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJoystickData}{JoystickData}}\&)>\ callback;}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classJoyDDSSubscriber}{JoyDDSSubscriber}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classJoyDDSSubscriber}{JoyDDSSubscriber}}(\textcolor{keyword}{const}\ QString\&\ topicName,\ QObject*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classJoyDDSSubscriber}{\string~JoyDDSSubscriber}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ signals:}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ joyDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJoystickData}{JoystickData}}\&\ data);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ DomainParticipant*\ participant\_;}
+\DoxyCodeLine{00046\ \ \ \ \ Subscriber*\ subscriber\_;}
+\DoxyCodeLine{00047\ \ \ \ \ Topic*\ topic\_;}
+\DoxyCodeLine{00048\ \ \ \ \ DataReader*\ reader\_;}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{classjoyReaderListener}{joyReaderListener}}*\ listener\_;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ JOYDDSSUBSCRIBER\_H}}
+
+\end{DoxyCode}

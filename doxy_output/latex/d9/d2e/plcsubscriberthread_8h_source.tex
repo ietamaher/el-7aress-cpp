@@ -1,0 +1,37 @@
+\doxysection{plcsubscriberthread.\+h}
+\hypertarget{plcsubscriberthread_8h_source}{}\label{plcsubscriberthread_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PLCSUBSCRIBERTHREAD\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PLCSUBSCRIBERTHREAD\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QThread>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Response__msg_8h}{Response\_msg.h}}"{}}\ \ \textcolor{comment}{//\ Assuming\ this\ is\ a\ C++\ representation\ of\ your\ DDS\ message}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}plcddssubscriber.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }DDSSubscriber;\ \ \textcolor{comment}{//\ Assuming\ this\ represents\ your\ DDS\ Subscriber\ class}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPlcSubscriberThread}{PlcSubscriberThread}}\ :\ \textcolor{keyword}{public}\ QThread\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classPlcSubscriberThread}{PlcSubscriberThread}}(\textcolor{keyword}{const}\ QString\&\ topicName,\ QObject*\ parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classPlcSubscriberThread}{\string~PlcSubscriberThread}}();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ stop();\ \ \textcolor{comment}{//\ Method\ to\ stop\ the\ thread}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ handleDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ data);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ signals:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ plcDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ data);\ \ \textcolor{comment}{//\ Signal\ to\ emit\ when\ new\ data\ is\ received}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ run()\ \textcolor{keyword}{override};\ \ \textcolor{comment}{//\ The\ thread's\ main\ function}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ QString\ topicName;}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{classPlcDDSSubscriber}{PlcDDSSubscriber}}*\ subscriber;\ \ \textcolor{comment}{//\ Pointer\ to\ the\ DDS\ subscriber}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{bool}\ stopped;\ \ \textcolor{comment}{//\ Flag\ to\ control\ the\ thread's\ execution}}
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PLCSUBSCRIBERTHREAD\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,123 @@
+\doxysection{mainwindow.\+h}
+\hypertarget{mainwindow_8h_source}{}\label{mainwindow_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MAINWINDOW\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MAINWINDOW\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#include\ "{}videowidget.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QTimer>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}motorsubscriberthread.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}joysubscriberthread.h"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}plcsubscriberthread.h"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}motorpublisherthread.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}plcpublisherthread.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\#include\ "{}videocapture.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}videocapture\_cuda.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}camerathread.h"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}camerawidget.h"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}videoglwidget\_gl.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}actiondata.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}plcactiondata.h"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }Ui\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMainWindow}{MainWindow}};}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMainWindow}{MainWindow}}\ :\ \textcolor{keyword}{public}\ QMainWindow\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classMainWindow}{MainWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classMainWindow}{\string~MainWindow}}();}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ addCameraWidgetToLayout(\mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ *cameraWidget);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ Ui::MainWindow\ *ui;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ initUI();}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ initDDS();}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ initVideoStream();}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ initLabels();}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ updateAzimuthLabel();}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ updateTrackLabel();}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ updateDetectLabel();}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ updateStabLabel();}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ updateSpeedLabel();}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ updateBurstModeLabel();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ publishAction(\textcolor{keyword}{const}\ \mbox{\hyperlink{structActionData}{ActionData}}\&\ action\_data);}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ plc\_PublishAction(\textcolor{keyword}{const}\ \mbox{\hyperlink{structPlcActionData}{PlcActionData}}\&\ action\_data);}
+\DoxyCodeLine{00056\ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ QVBoxLayout\ *mainLayout;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//VideoWidget\ *videoWidget;\ \ //\ OpenGL\ widget\ for\ video\ streaming}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//\ Add\ DDS-\/related\ members,\ QTimer,\ etc.}}
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classCaptureVideoCuda}{CaptureVideoCuda}}\ *videoCapture;\ \textcolor{comment}{//\ Declare\ videoCapture\ as\ a\ member\ variable}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classVideoGLWidget__gl}{VideoGLWidget\_gl}}\ *videoWidget;}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classCameraThread}{CameraThread}}\ *cameraThread;}
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ *cameraWidget;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{classMotorSubscriberThread}{MotorSubscriberThread}}*\ motorSubscriberThread\_;\ \ \textcolor{comment}{//\ Pointer\ to\ the\ MotorSubscriberThread}}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classMotorPublisherThread}{MotorPublisherThread}}*\ motorPublisherThread\_;}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{classJoySubscriberThread}{JoySubscriberThread}}*\ joySubscriberThread\_;\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classPlcSubscriberThread}{PlcSubscriberThread}}*\ plcSubscriberThread\_;\ \ \textcolor{comment}{//\ Pointer\ to\ the\ MotorSubscriberThread}}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classPlcPublisherThread}{PlcPublisherThread}}*\ plcPublisherThread\_;\ \ \ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{int}\ incr\_;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ steps;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Total\ steps\ taken\ by\ the\ motor}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{double}\ azimuth;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initial\ azimuth\ value}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{double}\ elevation;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Elevation\ value}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{double}\ lrf;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Laser\ Range\ Finder\ distance}}
+\DoxyCodeLine{00076\ \ \ \ \ QString\ lrf\_rdy;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ LRF\ ready\ state}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{double}\ fov;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Field\ of\ View}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ speed\_;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Speed}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ latestSpeed;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ lastButtonSpdPlusValue;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ lastButtonSpdMinusValue;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ mot1Speed;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ direction;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ QString\ gun\_ready;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gun\ ready\ state}}
+\DoxyCodeLine{00087\ \ \ \ \ QString\ gun\_charged;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gun\ charged\ state}}
+\DoxyCodeLine{00088\ \ \ \ \ QString\ gun\_armed;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gun\ armed\ state}}
+\DoxyCodeLine{00089\ \ \ \ \ QString\ ammunition\_low;\ \ \ \ \ \textcolor{comment}{//\ Ammunition\ low\ state}}
+\DoxyCodeLine{00090\ \ \ \ \ QString\ ammunition\_ready;\ \ \ \textcolor{comment}{//\ Ammunition\ ready\ state}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ Initial\ states\ and\ modes}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ last\_button\_burst\_mode\_value;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{int}\ last\_button\_track\_value;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{int}\ last\_button\_detect\_value;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ last\_button\_stab\_value;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ lastButtonBurstModeValue;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ last\_buttonFireValue;}
+\DoxyCodeLine{00099\ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ QStringList\ burstModes;\ \ \ \ \textcolor{comment}{//\ Burst\ modes}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{int}\ currentBurstModeIndex;\ \ \textcolor{comment}{//\ Current\ burst\ mode\ index}}
+\DoxyCodeLine{00103\ \ \ \ \ QString\ track\_state;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tracking\ state}}
+\DoxyCodeLine{00104\ \ \ \ \ QString\ detect\_state;\ \ \ \ \ \ \ \textcolor{comment}{//\ Detection\ state}}
+\DoxyCodeLine{00105\ \ \ \ \ QString\ stab\_state;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stabilization\ state}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ updateUI();\ \ \textcolor{comment}{//\ Slot\ to\ update\ UI\ elements}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ onMotorDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ data);\ \ \textcolor{comment}{//\ Slot\ to\ handle\ motor\ data}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ onJoyDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classJoystickData}{JoystickData}}\&\ data);\ \ \textcolor{comment}{//\ Slot\ to\ handle\ motor\ data}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ onPlcDataReceived(\textcolor{keyword}{const}\ \mbox{\hyperlink{classResponse__msg}{Response\_msg}}\&\ data);\ \ \textcolor{comment}{//\ Slot\ to\ handle\ motor\ data}}
+\DoxyCodeLine{00113\ signals:}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ detectionToggled(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ trackingToggled(\textcolor{keywordtype}{bool}\ enabled);\ \ \textcolor{comment}{//\ Add\ slots\ for\ DDS\ data\ updates,\ video\ frame\ updates,\ etc.}}
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MAINWINDOW\_H}}
+
+\end{DoxyCode}

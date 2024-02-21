@@ -8,6 +8,7 @@
 
 #include <QLabel>
 #include <QTimer>
+#include "QPushButton"
 
 #include "motorsubscriberthread.h"
 #include "joysubscriberthread.h"
@@ -16,11 +17,18 @@
 #include "motorpublisherthread.h"
 #include "plcpublisherthread.h"
 //#include "videocapture.h"
-#include "videocapture_cuda.h"
+//#include "videocapture_cuda.h"
+#include "camerathread.h"
+#include "camerawidget.h"
+
 
 #include "videoglwidget_gl.h"
 #include "actiondata.h"
 #include "plcactiondata.h"
+
+#include "trackingmanager.h"
+#include "cameracontroller.h"
+#include "overlaywidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,6 +42,7 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void addCameraWidgetToLayout(CameraWidget *cameraWidget);
 
 private:
     Ui::MainWindow *ui;
@@ -49,12 +58,22 @@ private:
     void updateBurstModeLabel();
     void publishAction(const ActionData& action_data);
     void plc_PublishAction(const PlcActionData& action_data);
-    
+    void focusCameraOnTrack(const ObjectInfo& trackInfo);
+
+
     QVBoxLayout *mainLayout;
+    QPushButton* findButtonForTrack(unsigned long uniqueId);
+    QMap<unsigned long, QPushButton*> trackButtons;
+
     //VideoWidget *videoWidget;  // OpenGL widget for video streaming
     // Add DDS-related members, QTimer, etc.
-    CaptureVideoCuda *videoCapture; // Declare videoCapture as a member variable
+    //CaptureVideoCuda *videoCapture; // Declare videoCapture as a member variable
     VideoGLWidget_gl *videoWidget;
+    CameraThread *cameraThread;
+    CameraWidget *cameraWidget;
+    TrackingManager *trackingManager;
+    CameraController *cameraController;
+
 
     MotorSubscriberThread* motorSubscriberThread_;  // Pointer to the MotorSubscriberThread
     MotorPublisherThread* motorPublisherThread_;
@@ -104,9 +123,17 @@ public slots:
     void onMotorDataReceived(const Response_msg& data);  // Slot to handle motor data
     void onJoyDataReceived(const JoystickData& data);  // Slot to handle motor data
     void onPlcDataReceived(const Response_msg& data);  // Slot to handle motor data
+    void onPrimaryObjectUpdated(const ObjectInfo& primaryObject);
+    void updateTrackButton(const ObjectInfo& trackInfo);
+    void triggerTrackingManagerTest();
+
 signals:
     void detectionToggled(bool enabled);
+    void settingParameters(const QString& burstMode, bool trackingState, bool detectionState, bool stabState, double speed);
     void trackingToggled(bool enabled);  // Add slots for DDS data updates, video frame updates, etc.
+    void primaryObjectPositionUpdated(const QPoint& position);
+
+
 };
 
 #endif // MAINWINDOW_H

@@ -16,7 +16,7 @@
   <property name="styleSheet">
    <string notr="true">background-color:rgba(0, 0, 0, 10) ;
 font-family: Courier;
-font-size: 14pt;
+font-size: 13pt;
  font-weight : 600;  
 color:red;         
 QLabel {
@@ -27,7 +27,7 @@ QLabel {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="VideoGLWidget_gl" name="ui_widget" native="true">
+   <widget class="QWidget" name="ui_widget" native="true">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -35,6 +35,9 @@ QLabel {
       <width>1280</width>
       <height>720</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:transparent;</string>
     </property>
     <widget class="QLabel" name="display_stab">
      <property name="geometry">
@@ -119,11 +122,21 @@ QLabel {
       <string>TextLabel</string>
      </property>
     </widget>
+    <widget class="CameraWidget" name="widget2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>50</y>
+       <width>1024</width>
+       <height>600</height>
+      </rect>
+     </property>
+    </widget>
     <widget class="QLabel" name="display_burst_mode">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>610</y>
+       <x>40</x>
+       <y>660</y>
        <width>241</width>
        <height>41</height>
       </rect>
@@ -138,8 +151,8 @@ QLabel {
     <widget class="QLabel" name="display_speed">
      <property name="geometry">
       <rect>
-       <x>880</x>
-       <y>150</y>
+       <x>870</x>
+       <y>660</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -151,14 +164,48 @@ QLabel {
       <string>TextLabel</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="testButton">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>690</y>
+       <width>89</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PushButton</string>
+     </property>
+    </widget>
+    <widget class="QWidget" name="horizontalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>660</y>
+       <width>361</width>
+       <height>80</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="trackButtonLayout"/>
+    </widget>
+    <zorder>display_stab</zorder>
+    <zorder>display_track</zorder>
+    <zorder>display_lrf</zorder>
+    <zorder>display_azimuth</zorder>
+    <zorder>display_detection</zorder>
+    <zorder>widget2</zorder>
+    <zorder>display_burst_mode</zorder>
+    <zorder>display_speed</zorder>
+    <zorder>testButton</zorder>
+    <zorder>horizontalLayoutWidget</zorder>
    </widget>
   </widget>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>VideoGLWidget_gl</class>
+   <class>CameraWidget</class>
    <extends>QWidget</extends>
-   <header>/home/jetson/Desktop/el-7ress-cpp/videoglwidget_gl.h</header>
+   <header>/home/jetson/Desktop/Git_repos/el-7ress-cpp/camerawidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
