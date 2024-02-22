@@ -3,7 +3,7 @@
 #include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), incr_(0), steps(0),
+    : QMainWindow(parent), incr_(0), incr_1(0), in1(0), steps(0),
     azimuth(0.0),
     elevation(0.0),
     lrf(0.0),
@@ -94,6 +94,8 @@ void MainWindow::initVideoStream() {
     //connect(this, SIGNAL(primaryObjectPositionUpdated(QPoint)), cameraThread, SLOT(handlePrimaryObjectPositionUpdate(QPoint)));
     connect(this, &MainWindow::primaryObjectPositionUpdated, cameraThread, &CameraThread::handlePrimaryObjectPositionUpdate);
     connect(this, &MainWindow::settingParameters, cameraThread, &CameraThread::handleSettingParameters);
+    connect(this, &MainWindow::displayingMotorParameters, cameraThread, &CameraThread::handleMotorParameters);
+    connect(this, &MainWindow::displayingPlcParameters, cameraThread, &CameraThread::handlePlcParameters);
 
     // Inside MainWindow constructor or initialization function
     //connect(this, &MainWindow::detectionToggled, cameraWidget, &CameraWidget::toggleDetection);
@@ -149,19 +151,6 @@ QPushButton* MainWindow::findButtonForTrack(unsigned long uniqueId) {
     return trackButtons.value(uniqueId, nullptr); // Returns nullptr if uniqueId is not found
 }
 
-/*QPushButton* MainWindow::findButtonForTrack(unsigned long uniqueId) {
-    // Assuming ui->trackButtonLayout is a layout containing the buttons
-    for (int i = 0; i < ui->trackButtonLayout->count(); ++i) {
-        QWidget* widget = ui->trackButtonLayout->itemAt(i)->widget();
-        if (widget) {
-            QPushButton* button = qobject_cast<QPushButton*>(widget);
-            if (button && button->objectName() == QString::number(uniqueId)) {
-                return button; // Found the button for the track
-            }
-        }
-    }
-    return nullptr; // No button found for the track
-}*/
 
 void MainWindow::focusCameraOnTrack(const ObjectInfo& trackInfo) {
     QString statusText = QString(" focusCameraOnTrack  Primary Object - ID: %1, Position: (%2, %3), Size: (%4x%5)")
@@ -169,11 +158,8 @@ void MainWindow::focusCameraOnTrack(const ObjectInfo& trackInfo) {
                          .arg(trackInfo.bboxLeft).arg(trackInfo.bboxTop)
                          .arg(trackInfo.bboxRight).arg(trackInfo.bboxBottom);
     qDebug() << statusText ;
-
-    //QPoint targetPosition((trackInfo.bboxLeft + trackInfo.bboxRight)/2, (trackInfo.bboxTop + trackInfo.bboxBottom)/2);
-    //emit primaryObjectPositionUpdated(targetPosition);
-
 }
+
 void MainWindow::triggerTrackingManagerTest() {
     trackingManager->testProcessObjectMetadata();
 }
@@ -213,6 +199,16 @@ void MainWindow::initDDS() {
     plcPublisherThread_->start();    
 }
 
+/**
+ * @brief Handles joystick input data and updates UI components and internal states accordingly.
+ * 
+ * This method processes the joystick data received, including button states, axis states, and hat states.
+ * It updates the UI and internal states based on the joystick input, such as speed adjustments, mode toggling,
+ * and tracking or detection state changes. It also publishes actions to PLC or motor controllers based on the input.
+ * 
+ * @param data A const reference to JoystickData, which contains the current state of the joystick,
+ * including button states, axis positions, and hat directions.
+ */
 void MainWindow::onJoyDataReceived(const JoystickData& data) {
     //qDebug() << "onJoyDataReceived received #";
     // Retrieve joystick states (assuming these methods return vectors or arrays)
@@ -342,19 +338,51 @@ void MainWindow::onJoyDataReceived(const JoystickData& data) {
 
 }
 
+/**
+ * @brief Publishes an action to a motor controller based on the provided action data.
+ * 
+ * This method enqueues the specified action into the motor publisher thread, which is responsible for
+ * sending commands to the motor controller. The action data includes details about the action to be performed,
+ * such as movement direction or speed adjustments. This method is typically called in response to user inputs
+ * or other events that require motor action.
+ * 
+ * @param action_data A const reference to ActionData, encapsulating the details of the action to be performed,
+ * including the action type and necessary parameters.
+ */
 void MainWindow::publishAction(const ActionData& action_data){
         //Assuming you have initialized and started a PublisherThread named self.dds_publisher_thread
         motorPublisherThread_->enqueueAction(action_data);
         qDebug() << "cmd to move" ;
 }
- 
+
+/**
+ * @brief Publishes an action to a PLC (Programmable Logic Controller) based on the provided PLC action data.
+ * 
+ * Similar to `publishAction`, this method enqueues the specified action into the PLC publisher thread,
+ * which handles commands intended for PLC-controlled devices. The PLC action data contains information
+ * specific to PLC operations, such as device control commands or configuration changes. This method
+ * facilitates interaction with PLC devices, enabling control over their operation based on the current
+ * application state or user inputs.
+ * 
+ * @param action_data A const reference to PlcActionData, containing the specifics of the PLC action,
+ * including the action type and associated parameters.
+ */ 
 void MainWindow::plc_PublishAction(const PlcActionData& action_data){
         //Assuming you have initialized and started a PublisherThread named self.dds_publisher_thread
         plcPublisherThread_->enqueueAction(action_data);
         qDebug() << "cmd to fire" ;
 }
 
-
+/**
+ * @brief Processes motor response data and updates the UI accordingly.
+ * 
+ * This method extracts relevant information from the motor response, such as azimuth,
+ * and updates the UI components to reflect the current state or position. It increments
+ * an internal counter to track the number of responses processed.
+ * 
+ * @param data A const reference to Response_msg, which contains the response data from the motor,
+ * including status, position, or error codes as applicable.
+ */
 void MainWindow::onMotorDataReceived(const Response_msg& data) {
     // Extract azimuth from data - assuming data() returns a vector or array-like structure
     // Adjust the index [4] as needed to match the data layout in Response_msg
@@ -362,19 +390,30 @@ void MainWindow::onMotorDataReceived(const Response_msg& data) {
 
     incr_++;
     ui->display_detection->setText(QString::number(incr_));
-
     // Update the azimuth label with the new value
     updateAzimuthLabel();
 
 }
 
+/**
+ * @brief Processes PLC response data and updates the UI accordingly.
+ * 
+ * Similar to onMotorDataReceived, this method processes response data from PLC-controlled devices.
+ * It updates specific UI components related to PLC operations and increments an internal counter
+ * to keep track of the number of PLC responses processed.
+ * 
+ * @param data A const reference to Response_msg, which contains the response data from the PLC,
+ * including status, position, or error codes as applicable.
+ */
 void MainWindow::onPlcDataReceived(const Response_msg& data) {
     // Extract azimuth from data - assuming data() returns a vector or array-like structure
     // Adjust the index [4] as needed to match the data layout in Response_msg
-    this->steps = data.data()[0];
+    //this->steps = data.data()[0];
 
-    incr_++;
-    ui->display_stab->setText(QString::number(incr_));
+    incr_1++;
+    emit displayingPlcParameters(incr_1, this->in1);
+
+    ui->display_stab->setText(QString::number(incr_1));
 
     // Update the azimuth label with the new value
     //updateAzimuthLabel();
@@ -385,6 +424,13 @@ void MainWindow::updateUI() {
     // Update UI elements based on latest data (e.g., DDS data, video frames)
 }
 
+/**
+ * @brief Updates the label displaying the current azimuth value.
+ * 
+ * This method calculates the azimuth based on internal step count, formats it for display,
+ * and updates the corresponding UI label. It also emits a signal with the updated parameters
+ * for any connected slots to use.
+ */
 void MainWindow::updateAzimuthLabel() {
 
     double azimuth = std::fmod(static_cast<double>(this->steps) * 0.009, 360.0);
@@ -392,6 +438,8 @@ void MainWindow::updateAzimuthLabel() {
 
     // Create the text for the label
     QString azimuthText = QString("Az: %1").arg(azimuth, 0, 'f', 1); // 'f' for fixed-point notation, 1 for 1 decimal place
+    emit displayingMotorParameters(this->incr_, azimuth);
+
 
     // Set the text on the label
     ui->display_azimuth->setText(azimuthText);

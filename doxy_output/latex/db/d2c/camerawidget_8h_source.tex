@@ -8,62 +8,113 @@
 \DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QApplication>}}
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QWidget>}}
 \DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <gst/gst.h>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <gst/video/videooverlay.h>}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <glib.h>}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <cuda\_runtime\_api.h>}}
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}gstnvdsmeta.h"{}}}
-\DoxyCodeLine{00014\ \textcolor{comment}{//\#include\ <gstnvdsmeta.h>}}
-\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ MAX\_DISPLAY\_LEN\ 64}}
-\DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ PGIE\_CLASS\_ID\_VEHICLE\ 0}}
-\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ PGIE\_CLASS\_ID\_PERSON\ 2}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QPainter>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QOpenGLWidget>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QOpenGLFunctions>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QOpenGLShaderProgram>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QOpenGLTexture>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QImage>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <gst/gst.h>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <gst/video/videooverlay.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <gst/app/gstappsink.h>}}
 \DoxyCodeLine{00019\ }
-\DoxyCodeLine{00020\ \textcolor{comment}{/*\ The\ muxer\ output\ resolution\ must\ be\ set\ if\ the\ input\ streams\ will\ be\ of}}
-\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ different\ resolution.\ The\ muxer\ will\ scale\ all\ the\ input\ frames\ to\ this}}
-\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ resolution.\ */}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ MUXER\_OUTPUT\_WIDTH\ 1280}}
-\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ MUXER\_OUTPUT\_HEIGHT\ 720}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{comment}{/*\ Muxer\ batch\ formation\ timeout,\ for\ e.g.\ 40\ millisec.\ Should\ ideally\ be\ set}}
-\DoxyCodeLine{00027\ \textcolor{comment}{\ *\ based\ on\ the\ fastest\ source's\ framerate.\ */}}
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ MUXER\_BATCH\_TIMEOUT\_USEC\ 40000}}
-\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <glib.h>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <cuda\_runtime\_api.h>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}gstnvdsmeta.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <QMetaType>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}objectinfo.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}trackingmanager.h"{}}}
 \DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ :\ \textcolor{keyword}{public}\ QWidget\ \{}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ Q\_OBJECT}
-\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classCameraWidget}{CameraWidget}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{classCameraWidget}{\string~CameraWidget}}();}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ startCamera();}
-\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{/*void\ setup\_toggle\_pgie\_probe();}}
-\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ GstPadProbeReturn\ toggle\_pgie\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);\ */}}
-\DoxyCodeLine{00040\ \ \ \ \ GstPadProbeReturn\ interval\_property\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);}
-\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//GstPadProbeReturn\ metadata\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);}}
-\DoxyCodeLine{00042\ }
-\DoxyCodeLine{00043\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static}\ GstPadProbeReturn\ metadata\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);\ }
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{static}\ gboolean\ busCall(GstBus\ *bus,\ GstMessage\ *msg,\ gpointer\ data);}
-\DoxyCodeLine{00046\ \ \ \ \ GstElement\ *pipeline,\ *source,\ *sink,\ *pgie,\ *tracker,\ *streammux,\ *nvvidconvsrc,\ *vidconv,\ *nvosd,\ *transform,\ *capsfilter1,\ *capsfilter2,\ *decoder;}
-\DoxyCodeLine{00047\ \ \ \ \ GstCaps\ *caps1,\ *caps2;}
-\DoxyCodeLine{00048\ \ \ \ \ guint\ bus\_watch\_id;}
-\DoxyCodeLine{00049\ \ \ \ \ GstBus\ *bus;}
-\DoxyCodeLine{00050\ \ \ \ \ GstMessage\ *msg;}
-\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{int}\ current\_device\ =\ -\/1;}
-\DoxyCodeLine{00052\ \ \ \ \ GMainLoop\ *loop;\ \ }
-\DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ enableDetection;}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ enableTracking;}
-\DoxyCodeLine{00056\ \ \ \ \ }
-\DoxyCodeLine{00057\ \textcolor{keyword}{public}\ slots:}
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//void\ HandleShutdown();\ //\ Slot\ to\ handle\ cleanup\ and\ shutdown\ \ \ \ }}
-\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleDetection(\textcolor{keywordtype}{bool}\ enabled);}
-\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleTracking(\textcolor{keywordtype}{bool}\ enabled);\ }
-\DoxyCodeLine{00061\ }
-\DoxyCodeLine{00062\ \};}
+\DoxyCodeLine{00031\ \ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ USE\_OPENCV\ 0}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ PGIE\_CLASS\_ID\_VEHICLE\ 0}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ PGIE\_CLASS\_ID\_PERSON\ 2}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{/*\ The\ muxer\ output\ resolution\ must\ be\ set\ if\ the\ input\ streams\ will\ be\ of}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *\ different\ resolution.\ The\ muxer\ will\ scale\ all\ the\ input\ frames\ to\ this}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ resolution.\ */}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ MUXER\_OUTPUT\_WIDTH\ 1280}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ MUXER\_OUTPUT\_HEIGHT\ 720}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/*\ Muxer\ batch\ formation\ timeout,\ for\ e.g.\ 40\ millisec.\ Should\ ideally\ be\ set}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ based\ on\ the\ fastest\ source's\ framerate.\ */}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ MUXER\_BATCH\_TIMEOUT\_USEC\ 40000}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ MAX\_DISPLAY\_LEN\ 200}}
+\DoxyCodeLine{00048\ \ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ :\ \textcolor{keyword}{public}\ QOpenGLWidget,\ \textcolor{keyword}{protected}\ QOpenGLFunctions\ \{\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classCameraWidget}{CameraWidget}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classCameraWidget}{\string~CameraWidget}}();}
+\DoxyCodeLine{00054\ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ startCamera();}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{/*void\ setup\_toggle\_pgie\_probe();}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ GstPadProbeReturn\ toggle\_pgie\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);\ */}}
+\DoxyCodeLine{00058\ \ \ \ \ GstPadProbeReturn\ interval\_property\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{//GstPadProbeReturn\ metadata\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ setCommonTextParams(NvOSD\_TextParams\ *txt\_params);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ setTargetPosition(\textcolor{keyword}{const}\ QPoint\&\ position);}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ displayFrame(\textcolor{keyword}{const}\ QImage\&\ frame);}
 \DoxyCodeLine{00063\ }
-\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CAMERAWIDGET\_H}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ frame\_number;}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{constexpr}\ gchar\ pgie\_classes\_str[4][32]\ =\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Vehicle"{}},\ \textcolor{stringliteral}{"{}TwoWheeler"{}},\ \textcolor{stringliteral}{"{}Person"{}},\ \textcolor{stringliteral}{"{}Roadsign"{}}}
+\DoxyCodeLine{00067\ \ \ \ \ \};}
+\DoxyCodeLine{00068\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ paintEvent(QPaintEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classTrackingManager}{TrackingManager}}\ *trackingManager;}
+\DoxyCodeLine{00073\ \ \ \ \ QPoint\ targetPosition;\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ GstFlowReturn\ on\_new\_sample(GstAppSink\ *sink,\ gpointer\ data);}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{static}\ GstPadProbeReturn\ metadata\_probe(GstPad\ *pad,\ GstPadProbeInfo\ *info,\ gpointer\ user\_data);\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ GstPadProbeReturn\ osd\_sink\_pad\_buffer\_probe\ (GstPad\ *\ pad,\ GstPadProbeInfo\ *\ info,\ gpointer\ u\_data);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{static}\ gboolean\ busCall(GstBus\ *bus,\ GstMessage\ *msg,\ gpointer\ data);}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ addLineToDisplayMeta(NvDsDisplayMeta\ *display\_meta,\ \textcolor{keywordtype}{int}\ x1,\ \textcolor{keywordtype}{int}\ y1,\ \textcolor{keywordtype}{int}\ x2,\ \textcolor{keywordtype}{int}\ y2);}
+\DoxyCodeLine{00079\ \ \ \ \ GstElement\ *pipeline,\ *source,\ *sink,\ *pgie,\ *tracker,\ *streammux,\ *nvvidconvsrc,\ *vidconv,\ *nvosd,\ *transform,\ *capsfilter1,\ *capsfilter2,\ *decoder;}
+\DoxyCodeLine{00080\ \ \ \ \ GstCaps\ *caps1,\ *caps2;}
+\DoxyCodeLine{00081\ \ \ \ \ guint\ bus\_watch\_id;}
+\DoxyCodeLine{00082\ \ \ \ \ GstBus\ *bus;}
+\DoxyCodeLine{00083\ \ \ \ \ GstMessage\ *msg;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ current\_device\ =\ -\/1;}
+\DoxyCodeLine{00085\ \ \ \ \ GMainLoop\ *loop;\ \ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ enableDetection;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{bool}\ enableTracking;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ QImage\ currentFrame;}
+\DoxyCodeLine{00091\ \ \ \ \ QString\ currentBurstMode;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{bool}\ currentTrackingState;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ currentDetectionState;}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{bool}\ currentStabState;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{double}\ currentSpeed;}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ currentincr\_;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{double}\ currentAzimuth;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{int}\ currentincr\_1;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{double}\ currentInput1;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ signals:}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ objectMetadataReceived(\textcolor{keyword}{const}\ QList<ObjectInfo>\&\ objects);}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ frameReady(\textcolor{keyword}{const}\ QImage\&\ frame);\ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ objectMetadataProcessed(\textcolor{keyword}{const}\ QList<ObjectInfo>\&\ objects);}
+\DoxyCodeLine{00105\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//void\ HandleShutdown();\ //\ Slot\ to\ handle\ cleanup\ and\ shutdown\ \ \ \ }}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleDetection(\textcolor{keywordtype}{bool}\ enabled);}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleTracking(\textcolor{keywordtype}{bool}\ enabled);\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ setSettingParameters(\textcolor{keyword}{const}\ QString\&\ burstMode,\ \textcolor{keywordtype}{bool}\ trackingState,\ \textcolor{keywordtype}{bool}\ detectionState,\ \textcolor{keywordtype}{bool}\ stabState,\ \textcolor{keywordtype}{double}\ speed);}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ setMotorParameters(\textcolor{keywordtype}{int}\ incr\_,\ \textcolor{keywordtype}{double}\ azimuth);}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ setPlcParameters(\textcolor{keywordtype}{int}\ incr\_,\ \textcolor{keywordtype}{bool}\ in1);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CAMERAWIDGET\_H}}
 
 \end{DoxyCode}

@@ -82,6 +82,9 @@ private:
     PlcPublisherThread* plcPublisherThread_;   
 
     int incr_;
+    int incr_1;
+    bool in1;
+
     int steps;                  // Total steps taken by the motor
     double azimuth;             // Initial azimuth value
     double elevation;           // Elevation value
@@ -130,6 +133,9 @@ public slots:
 signals:
     void detectionToggled(bool enabled);
     void settingParameters(const QString& burstMode, bool trackingState, bool detectionState, bool stabState, double speed);
+    void displayingMotorParameters(int inc, double azimuth);
+    void displayingPlcParameters(int inc, bool in1);
+
     void trackingToggled(bool enabled);  // Add slots for DDS data updates, video frame updates, etc.
     void primaryObjectPositionUpdated(const QPoint& position);
 

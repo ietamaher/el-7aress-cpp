@@ -93,7 +93,10 @@ private:
     bool currentDetectionState;
     bool currentStabState;
     double currentSpeed;
-
+    int currentincr_;
+    double currentAzimuth;
+    int currentincr_1;
+    double currentInput1;
 
 signals:
     void objectMetadataReceived(const QList<ObjectInfo>& objects);
@@ -104,6 +107,8 @@ public slots:
     void toggleDetection(bool enabled);
     void toggleTracking(bool enabled); 
     void setSettingParameters(const QString& burstMode, bool trackingState, bool detectionState, bool stabState, double speed);
+    void setMotorParameters(int incr_, double azimuth);
+    void setPlcParameters(int incr_, bool in1);
 
 };
 

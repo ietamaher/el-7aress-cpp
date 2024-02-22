@@ -35,7 +35,7 @@ void VideoGLWidget_gl::initializeGL() {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
     // Create text texture
-    createTextTexture("Hello ChatGPT");
+    createTextTexture("Hello ...");
 }
 
 void VideoGLWidget_gl::resizeGL(int w, int h) {

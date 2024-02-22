@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_7ejoystickdata_0',['~JoystickData',['../df/d99/classJoystickData.html#a0d32b27ff40a8c1199040b547d88e557',1,'JoystickData']]],
-  ['_7equery_5fmsg_1',['~Query_msg',['../d7/d56/classQuery__msg.html#a8c0b0ef549d0455f481f8ab20cf4f4a7',1,'Query_msg']]],
-  ['_7eresponse_5fmsg_2',['~Response_msg',['../d6/da2/classResponse__msg.html#a02d97b0dd0e716f2376426a012627c8a',1,'Response_msg']]]
+  ['write_5faddr_0',['write_addr',['../d7/d56/classQuery__msg.html#ad874faa75bbc0f7212c453323accd77a',1,'Query_msg::write_addr(uint32_t _write_addr)'],['../d7/d56/classQuery__msg.html#a07faca266a347ff3457b8964e5a78594',1,'Query_msg::write_addr() const'],['../d7/d56/classQuery__msg.html#adf93a56d70ae2390adf84fa75c9d3e21',1,'Query_msg::write_addr()']]],
+  ['write_5fnum_1',['write_num',['../d7/d56/classQuery__msg.html#ac5dab9c3bee066651077527018bb8053',1,'Query_msg::write_num(uint32_t _write_num)'],['../d7/d56/classQuery__msg.html#a6878dac92e2f9d27c561ab9bf40b2de6',1,'Query_msg::write_num() const'],['../d7/d56/classQuery__msg.html#a26734015ab882996e9546e8cbdb4c676',1,'Query_msg::write_num()']]],
+  ['writerlistener_2',['WriterListener',['../d3/d55/classWriterListener.html',1,'']]]
 ];

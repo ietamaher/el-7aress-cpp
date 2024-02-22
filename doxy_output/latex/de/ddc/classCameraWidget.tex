@@ -2,22 +2,20 @@
 \hypertarget{classCameraWidget}{}\label{classCameraWidget}\index{CameraWidget@{CameraWidget}}
 
 
-Inheritance diagram for Camera\+Widget\+:
-\nopagebreak
+Inheritance diagram for Camera\+Widget\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=169pt]{d1/df9/classCameraWidget__inherit__graph}
+\includegraphics[width=304pt]{d1/df9/classCameraWidget__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Camera\+Widget\+:
-\nopagebreak
+Collaboration diagram for Camera\+Widget\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=169pt]{d6/da0/classCameraWidget__coll__graph}
+\includegraphics[width=304pt]{d6/da0/classCameraWidget__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Slots}
@@ -28,6 +26,27 @@ void {\bfseries toggle\+Detection} (bool enabled)
 \item 
 \Hypertarget{classCameraWidget_a2f4e2e34e1452450a519926904da6259}\label{classCameraWidget_a2f4e2e34e1452450a519926904da6259} 
 void {\bfseries toggle\+Tracking} (bool enabled)
+\item 
+\Hypertarget{classCameraWidget_a1876c52ef2e16c6b6cb50892f12bcc4a}\label{classCameraWidget_a1876c52ef2e16c6b6cb50892f12bcc4a} 
+void {\bfseries set\+Setting\+Parameters} (const QString \&burst\+Mode, bool tracking\+State, bool detection\+State, bool stab\+State, double speed)
+\item 
+\Hypertarget{classCameraWidget_ab3d3c5d4acaca7d89f919572f039c19c}\label{classCameraWidget_ab3d3c5d4acaca7d89f919572f039c19c} 
+void {\bfseries set\+Motor\+Parameters} (int incr\+\_\+, double azimuth)
+\item 
+\Hypertarget{classCameraWidget_ac943964eb359193deb29cdc0e2357ec0}\label{classCameraWidget_ac943964eb359193deb29cdc0e2357ec0} 
+void {\bfseries set\+Plc\+Parameters} (int incr\+\_\+, bool in1)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCameraWidget_aa533dda1d0890d64be067aad0cbbc6d8}\label{classCameraWidget_aa533dda1d0890d64be067aad0cbbc6d8} 
+void {\bfseries object\+Metadata\+Received} (const QList$<$ \mbox{\hyperlink{structObjectInfo}{Object\+Info}} $>$ \&objects)
+\item 
+\Hypertarget{classCameraWidget_a1246aff727ade346d63fb9d79341fcec}\label{classCameraWidget_a1246aff727ade346d63fb9d79341fcec} 
+void {\bfseries frame\+Ready} (const QImage \&frame)
+\item 
+\Hypertarget{classCameraWidget_a291fb0fd2c3964b27979ac0ffeed95e8}\label{classCameraWidget_a291fb0fd2c3964b27979ac0ffeed95e8} 
+void {\bfseries object\+Metadata\+Processed} (const QList$<$ \mbox{\hyperlink{structObjectInfo}{Object\+Info}} $>$ \&objects)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -40,7 +59,46 @@ void {\bfseries start\+Camera} ()
 \item 
 \Hypertarget{classCameraWidget_afd6d83aeb931631efaaceff9d2c96a89}\label{classCameraWidget_afd6d83aeb931631efaaceff9d2c96a89} 
 Gst\+Pad\+Probe\+Return {\bfseries interval\+\_\+property\+\_\+probe} (Gst\+Pad \texorpdfstring{$\ast$}{*}pad, Gst\+Pad\+Probe\+Info \texorpdfstring{$\ast$}{*}info, gpointer user\+\_\+data)
+\item 
+\Hypertarget{classCameraWidget_a793aec75d1e5dfc7184d4e5e32f60149}\label{classCameraWidget_a793aec75d1e5dfc7184d4e5e32f60149} 
+void {\bfseries set\+Common\+Text\+Params} (Nv\+OSD\+\_\+\+Text\+Params \texorpdfstring{$\ast$}{*}txt\+\_\+params)
+\item 
+\Hypertarget{classCameraWidget_ae59fbd062c111b5418a605a5dc7d5a26}\label{classCameraWidget_ae59fbd062c111b5418a605a5dc7d5a26} 
+void {\bfseries set\+Target\+Position} (const QPoint \&position)
+\item 
+\Hypertarget{classCameraWidget_a8cd8df6d94c4fba34fcce9ff7562f22b}\label{classCameraWidget_a8cd8df6d94c4fba34fcce9ff7562f22b} 
+void {\bfseries display\+Frame} (const QImage \&frame)
 \end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCameraWidget_a6bbb64b0949fafb4754febcc2cb4315b}\label{classCameraWidget_a6bbb64b0949fafb4754febcc2cb4315b} 
+static int {\bfseries frame\+\_\+number} = 0
+\item 
+static constexpr gchar \mbox{\hyperlink{classCameraWidget_aa96b951a8b8aeeb32e2ce85ef94ecbb1}{pgie\+\_\+classes\+\_\+str}} \mbox{[}4\mbox{]}\mbox{[}32\mbox{]}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCameraWidget_a631cfab1a4ee7d182cdfae5f9d51201b}\label{classCameraWidget_a631cfab1a4ee7d182cdfae5f9d51201b} 
+void {\bfseries paint\+Event} (QPaint\+Event \texorpdfstring{$\ast$}{*}event) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classCameraWidget_aa96b951a8b8aeeb32e2ce85ef94ecbb1}\label{classCameraWidget_aa96b951a8b8aeeb32e2ce85ef94ecbb1} 
+\index{CameraWidget@{CameraWidget}!pgie\_classes\_str@{pgie\_classes\_str}}
+\index{pgie\_classes\_str@{pgie\_classes\_str}!CameraWidget@{CameraWidget}}
+\doxysubsubsection{\texorpdfstring{pgie\_classes\_str}{pgie\_classes\_str}}
+{\footnotesize\ttfamily constexpr gchar Camera\+Widget\+::pgie\+\_\+classes\+\_\+str\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Vehicle"{}},\ \textcolor{stringliteral}{"{}TwoWheeler"{}},\ \textcolor{stringliteral}{"{}Person"{}},\ \textcolor{stringliteral}{"{}Roadsign"{}}}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

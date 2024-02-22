@@ -2,8 +2,7 @@
 \hypertarget{classCameraThread}{}\label{classCameraThread}\index{CameraThread@{CameraThread}}
 
 
-Inheritance diagram for Camera\+Thread\+:
-\nopagebreak
+Inheritance diagram for Camera\+Thread\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,19 +11,45 @@ Inheritance diagram for Camera\+Thread\+:
 \end{figure}
 
 
-Collaboration diagram for Camera\+Thread\+:
-\nopagebreak
+Collaboration diagram for Camera\+Thread\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=169pt]{d1/d25/classCameraThread__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCameraThread_a28b1b968c96c022f27f6c47fc50734bb}\label{classCameraThread_a28b1b968c96c022f27f6c47fc50734bb} 
+void {\bfseries handle\+Primary\+Object\+Position\+Update} (const QPoint \&position)
+\item 
+\Hypertarget{classCameraThread_aabc5d1ff787b93beb3a4daaac21aa089}\label{classCameraThread_aabc5d1ff787b93beb3a4daaac21aa089} 
+void {\bfseries handle\+Setting\+Parameters} (const QString \&burst\+Mode, bool tracking\+State, bool detection\+State, bool stab\+State, double speed)
+\item 
+\Hypertarget{classCameraThread_a5f7be1c4c53d3f69f6a39f9db49e30b6}\label{classCameraThread_a5f7be1c4c53d3f69f6a39f9db49e30b6} 
+void {\bfseries handle\+Motor\+Parameters} (int incr\+\_\+, double azimuth)
+\item 
+\Hypertarget{classCameraThread_a6d9491ee49a53cfbf365a7baf8d1a989}\label{classCameraThread_a6d9491ee49a53cfbf365a7baf8d1a989} 
+void {\bfseries handle\+Plc\+Parameters} (int incr\+\_\+, bool in1)
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{classCameraThread_a1a319ff50d5255e3bad41915d79a3fec}\label{classCameraThread_a1a319ff50d5255e3bad41915d79a3fec} 
 void {\bfseries camera\+Widget\+Ready} (\mbox{\hyperlink{classCameraWidget}{Camera\+Widget}} \texorpdfstring{$\ast$}{*}camera\+Widget)
+\item 
+\Hypertarget{classCameraThread_a40387a9cb6268fd38f6586c5a321baff}\label{classCameraThread_a40387a9cb6268fd38f6586c5a321baff} 
+void {\bfseries update\+Camera\+Widget\+Position} (const QPoint \&position)
+\item 
+\Hypertarget{classCameraThread_a457dbba93a75be57404ccaae441c4913}\label{classCameraThread_a457dbba93a75be57404ccaae441c4913} 
+void {\bfseries update\+Setting\+Parameters} (const QString \&burst\+Mode, bool tracking\+State, bool detection\+State, bool stab\+State, double speed)
+\item 
+\Hypertarget{classCameraThread_a63a857444928abd0149287e8170033b1}\label{classCameraThread_a63a857444928abd0149287e8170033b1} 
+void {\bfseries update\+Motor\+Parameters} (int incr\+\_\+, double azimuth)
+\item 
+\Hypertarget{classCameraThread_adfbc7160cc8f5be7b4845deed0df561a}\label{classCameraThread_adfbc7160cc8f5be7b4845deed0df561a} 
+void {\bfseries update\+Plc\+Parameters} (int incr\+\_\+, bool in1)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}

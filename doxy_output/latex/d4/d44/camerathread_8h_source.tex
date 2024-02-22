@@ -18,11 +18,23 @@
 \DoxyCodeLine{00015\ }
 \DoxyCodeLine{00016\ signals:}
 \DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ cameraWidgetReady(\mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ *cameraWidget);}
-\DoxyCodeLine{00018\ \ \ \ \ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ *cameraWidget;}
-\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCameraWidgetPosition(\textcolor{keyword}{const}\ QPoint\&\ position);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ updateSettingParameters(\textcolor{keyword}{const}\ QString\&\ burstMode,\ \textcolor{keywordtype}{bool}\ trackingState,\ \textcolor{keywordtype}{bool}\ detectionState,\ \textcolor{keywordtype}{bool}\ stabState,\ \textcolor{keywordtype}{double}\ speed);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ updateMotorParameters(\textcolor{keywordtype}{int}\ incr\_,\ \textcolor{keywordtype}{double}\ azimuth);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ updatePlcParameters(\textcolor{keywordtype}{int}\ incr\_,\ \textcolor{keywordtype}{bool}\ in1);}
 \DoxyCodeLine{00022\ }
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CAMERATHREAD\_H}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ handlePrimaryObjectPositionUpdate(\textcolor{keyword}{const}\ QPoint\&\ position);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ handleSettingParameters(\textcolor{keyword}{const}\ QString\&\ burstMode,\ \textcolor{keywordtype}{bool}\ trackingState,\ \textcolor{keywordtype}{bool}\ detectionState,\ \textcolor{keywordtype}{bool}\ stabState,\ \textcolor{keywordtype}{double}\ speed);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ handleMotorParameters(\textcolor{keywordtype}{int}\ incr\_,\ \textcolor{keywordtype}{double}\ azimuth);}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ handlePlcParameters(\textcolor{keywordtype}{int}\ incr\_,\ \textcolor{keywordtype}{bool}\ in1);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{classCameraWidget}{CameraWidget}}\ *cameraWidget;}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CAMERATHREAD\_H}}
 
 \end{DoxyCode}

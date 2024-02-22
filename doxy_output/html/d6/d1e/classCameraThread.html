@@ -72,6 +72,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-slots">Public Slots</a> &#124;
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
@@ -100,11 +101,38 @@ Collaboration diagram for CameraThread:</div>
 </map>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-slots" name="pub-slots"></a>
+Public Slots</h2></td></tr>
+<tr class="memitem:a28b1b968c96c022f27f6c47fc50734bb" id="r_a28b1b968c96c022f27f6c47fc50734bb"><td class="memItemLeft" align="right" valign="top"><a id="a28b1b968c96c022f27f6c47fc50734bb" name="a28b1b968c96c022f27f6c47fc50734bb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handlePrimaryObjectPositionUpdate</b> (const QPoint &amp;position)</td></tr>
+<tr class="separator:a28b1b968c96c022f27f6c47fc50734bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabc5d1ff787b93beb3a4daaac21aa089" id="r_aabc5d1ff787b93beb3a4daaac21aa089"><td class="memItemLeft" align="right" valign="top"><a id="aabc5d1ff787b93beb3a4daaac21aa089" name="aabc5d1ff787b93beb3a4daaac21aa089"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleSettingParameters</b> (const QString &amp;burstMode, bool trackingState, bool detectionState, bool stabState, double speed)</td></tr>
+<tr class="separator:aabc5d1ff787b93beb3a4daaac21aa089"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f7be1c4c53d3f69f6a39f9db49e30b6" id="r_a5f7be1c4c53d3f69f6a39f9db49e30b6"><td class="memItemLeft" align="right" valign="top"><a id="a5f7be1c4c53d3f69f6a39f9db49e30b6" name="a5f7be1c4c53d3f69f6a39f9db49e30b6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleMotorParameters</b> (int incr_, double azimuth)</td></tr>
+<tr class="separator:a5f7be1c4c53d3f69f6a39f9db49e30b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9491ee49a53cfbf365a7baf8d1a989" id="r_a6d9491ee49a53cfbf365a7baf8d1a989"><td class="memItemLeft" align="right" valign="top"><a id="a6d9491ee49a53cfbf365a7baf8d1a989" name="a6d9491ee49a53cfbf365a7baf8d1a989"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handlePlcParameters</b> (int incr_, bool in1)</td></tr>
+<tr class="separator:a6d9491ee49a53cfbf365a7baf8d1a989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
 <tr class="memitem:a1a319ff50d5255e3bad41915d79a3fec" id="r_a1a319ff50d5255e3bad41915d79a3fec"><td class="memItemLeft" align="right" valign="top"><a id="a1a319ff50d5255e3bad41915d79a3fec" name="a1a319ff50d5255e3bad41915d79a3fec"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>cameraWidgetReady</b> (<a class="el" href="../../de/ddc/classCameraWidget.html">CameraWidget</a> *cameraWidget)</td></tr>
 <tr class="separator:a1a319ff50d5255e3bad41915d79a3fec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40387a9cb6268fd38f6586c5a321baff" id="r_a40387a9cb6268fd38f6586c5a321baff"><td class="memItemLeft" align="right" valign="top"><a id="a40387a9cb6268fd38f6586c5a321baff" name="a40387a9cb6268fd38f6586c5a321baff"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateCameraWidgetPosition</b> (const QPoint &amp;position)</td></tr>
+<tr class="separator:a40387a9cb6268fd38f6586c5a321baff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a457dbba93a75be57404ccaae441c4913" id="r_a457dbba93a75be57404ccaae441c4913"><td class="memItemLeft" align="right" valign="top"><a id="a457dbba93a75be57404ccaae441c4913" name="a457dbba93a75be57404ccaae441c4913"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateSettingParameters</b> (const QString &amp;burstMode, bool trackingState, bool detectionState, bool stabState, double speed)</td></tr>
+<tr class="separator:a457dbba93a75be57404ccaae441c4913"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63a857444928abd0149287e8170033b1" id="r_a63a857444928abd0149287e8170033b1"><td class="memItemLeft" align="right" valign="top"><a id="a63a857444928abd0149287e8170033b1" name="a63a857444928abd0149287e8170033b1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateMotorParameters</b> (int incr_, double azimuth)</td></tr>
+<tr class="separator:a63a857444928abd0149287e8170033b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfbc7160cc8f5be7b4845deed0df561a" id="r_adfbc7160cc8f5be7b4845deed0df561a"><td class="memItemLeft" align="right" valign="top"><a id="adfbc7160cc8f5be7b4845deed0df561a" name="adfbc7160cc8f5be7b4845deed0df561a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updatePlcParameters</b> (int incr_, bool in1)</td></tr>
+<tr class="separator:adfbc7160cc8f5be7b4845deed0df561a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>

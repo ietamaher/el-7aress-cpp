@@ -73,7 +73,10 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
+<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="../../d3/d0e/classCameraWidget-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">CameraWidget Class Reference</div></div>
 </div><!--header-->
@@ -83,9 +86,11 @@ Inheritance diagram for CameraWidget:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d1/df9/classCameraWidget__inherit__graph.png" border="0" usemap="#aCameraWidget_inherit__map" alt="Inheritance graph"/></div>
 <map name="aCameraWidget_inherit__map" id="aCameraWidget_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,79,124,104"/>
-<area shape="rect" title=" " alt="" coords="25,5,104,31"/>
-<area shape="poly" title=" " alt="" coords="67,44,67,79,62,79,62,44"/>
+<area shape="rect" title=" " alt="" coords="90,79,209,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="94,38,138,76,134,80,90,42"/>
+<area shape="rect" title=" " alt="" coords="158,5,303,31"/>
+<area shape="poly" title=" " alt="" coords="209,42,164,80,161,76,206,38"/>
 </map>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -93,9 +98,11 @@ Collaboration diagram for CameraWidget:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d6/da0/classCameraWidget__coll__graph.png" border="0" usemap="#aCameraWidget_coll__map" alt="Collaboration graph"/></div>
 <map name="aCameraWidget_coll__map" id="aCameraWidget_coll__map">
-<area shape="rect" title=" " alt="" coords="5,79,124,104"/>
-<area shape="rect" title=" " alt="" coords="25,5,104,31"/>
-<area shape="poly" title=" " alt="" coords="67,44,67,79,62,79,62,44"/>
+<area shape="rect" title=" " alt="" coords="90,79,209,104"/>
+<area shape="rect" title=" " alt="" coords="5,5,133,31"/>
+<area shape="poly" title=" " alt="" coords="94,38,138,76,134,80,90,42"/>
+<area shape="rect" title=" " alt="" coords="158,5,303,31"/>
+<area shape="poly" title=" " alt="" coords="209,42,164,80,161,76,206,38"/>
 </map>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -107,6 +114,27 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleDetection</b> (
 <tr class="memitem:a2f4e2e34e1452450a519926904da6259" id="r_a2f4e2e34e1452450a519926904da6259"><td class="memItemLeft" align="right" valign="top"><a id="a2f4e2e34e1452450a519926904da6259" name="a2f4e2e34e1452450a519926904da6259"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>toggleTracking</b> (bool enabled)</td></tr>
 <tr class="separator:a2f4e2e34e1452450a519926904da6259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1876c52ef2e16c6b6cb50892f12bcc4a" id="r_a1876c52ef2e16c6b6cb50892f12bcc4a"><td class="memItemLeft" align="right" valign="top"><a id="a1876c52ef2e16c6b6cb50892f12bcc4a" name="a1876c52ef2e16c6b6cb50892f12bcc4a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setSettingParameters</b> (const QString &amp;burstMode, bool trackingState, bool detectionState, bool stabState, double speed)</td></tr>
+<tr class="separator:a1876c52ef2e16c6b6cb50892f12bcc4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3d3c5d4acaca7d89f919572f039c19c" id="r_ab3d3c5d4acaca7d89f919572f039c19c"><td class="memItemLeft" align="right" valign="top"><a id="ab3d3c5d4acaca7d89f919572f039c19c" name="ab3d3c5d4acaca7d89f919572f039c19c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setMotorParameters</b> (int incr_, double azimuth)</td></tr>
+<tr class="separator:ab3d3c5d4acaca7d89f919572f039c19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac943964eb359193deb29cdc0e2357ec0" id="r_ac943964eb359193deb29cdc0e2357ec0"><td class="memItemLeft" align="right" valign="top"><a id="ac943964eb359193deb29cdc0e2357ec0" name="ac943964eb359193deb29cdc0e2357ec0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPlcParameters</b> (int incr_, bool in1)</td></tr>
+<tr class="separator:ac943964eb359193deb29cdc0e2357ec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
+Signals</h2></td></tr>
+<tr class="memitem:aa533dda1d0890d64be067aad0cbbc6d8" id="r_aa533dda1d0890d64be067aad0cbbc6d8"><td class="memItemLeft" align="right" valign="top"><a id="aa533dda1d0890d64be067aad0cbbc6d8" name="aa533dda1d0890d64be067aad0cbbc6d8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>objectMetadataReceived</b> (const QList&lt; <a class="el" href="../../d2/d94/structObjectInfo.html">ObjectInfo</a> &gt; &amp;objects)</td></tr>
+<tr class="separator:aa533dda1d0890d64be067aad0cbbc6d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1246aff727ade346d63fb9d79341fcec" id="r_a1246aff727ade346d63fb9d79341fcec"><td class="memItemLeft" align="right" valign="top"><a id="a1246aff727ade346d63fb9d79341fcec" name="a1246aff727ade346d63fb9d79341fcec"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>frameReady</b> (const QImage &amp;frame)</td></tr>
+<tr class="separator:a1246aff727ade346d63fb9d79341fcec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a291fb0fd2c3964b27979ac0ffeed95e8" id="r_a291fb0fd2c3964b27979ac0ffeed95e8"><td class="memItemLeft" align="right" valign="top"><a id="a291fb0fd2c3964b27979ac0ffeed95e8" name="a291fb0fd2c3964b27979ac0ffeed95e8"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>objectMetadataProcessed</b> (const QList&lt; <a class="el" href="../../d2/d94/structObjectInfo.html">ObjectInfo</a> &gt; &amp;objects)</td></tr>
+<tr class="separator:a291fb0fd2c3964b27979ac0ffeed95e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -119,7 +147,56 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>startCamera</b> ()</t
 <tr class="memitem:afd6d83aeb931631efaaceff9d2c96a89" id="r_afd6d83aeb931631efaaceff9d2c96a89"><td class="memItemLeft" align="right" valign="top"><a id="afd6d83aeb931631efaaceff9d2c96a89" name="afd6d83aeb931631efaaceff9d2c96a89"></a>
 GstPadProbeReturn&#160;</td><td class="memItemRight" valign="bottom"><b>interval_property_probe</b> (GstPad *pad, GstPadProbeInfo *info, gpointer user_data)</td></tr>
 <tr class="separator:afd6d83aeb931631efaaceff9d2c96a89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a793aec75d1e5dfc7184d4e5e32f60149" id="r_a793aec75d1e5dfc7184d4e5e32f60149"><td class="memItemLeft" align="right" valign="top"><a id="a793aec75d1e5dfc7184d4e5e32f60149" name="a793aec75d1e5dfc7184d4e5e32f60149"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setCommonTextParams</b> (NvOSD_TextParams *txt_params)</td></tr>
+<tr class="separator:a793aec75d1e5dfc7184d4e5e32f60149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59fbd062c111b5418a605a5dc7d5a26" id="r_ae59fbd062c111b5418a605a5dc7d5a26"><td class="memItemLeft" align="right" valign="top"><a id="ae59fbd062c111b5418a605a5dc7d5a26" name="ae59fbd062c111b5418a605a5dc7d5a26"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setTargetPosition</b> (const QPoint &amp;position)</td></tr>
+<tr class="separator:ae59fbd062c111b5418a605a5dc7d5a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd8df6d94c4fba34fcce9ff7562f22b" id="r_a8cd8df6d94c4fba34fcce9ff7562f22b"><td class="memItemLeft" align="right" valign="top"><a id="a8cd8df6d94c4fba34fcce9ff7562f22b" name="a8cd8df6d94c4fba34fcce9ff7562f22b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>displayFrame</b> (const QImage &amp;frame)</td></tr>
+<tr class="separator:a8cd8df6d94c4fba34fcce9ff7562f22b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a6bbb64b0949fafb4754febcc2cb4315b" id="r_a6bbb64b0949fafb4754febcc2cb4315b"><td class="memItemLeft" align="right" valign="top"><a id="a6bbb64b0949fafb4754febcc2cb4315b" name="a6bbb64b0949fafb4754febcc2cb4315b"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><b>frame_number</b> = 0</td></tr>
+<tr class="separator:a6bbb64b0949fafb4754febcc2cb4315b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa96b951a8b8aeeb32e2ce85ef94ecbb1" id="r_aa96b951a8b8aeeb32e2ce85ef94ecbb1"><td class="memItemLeft" align="right" valign="top">static constexpr gchar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa96b951a8b8aeeb32e2ce85ef94ecbb1">pgie_classes_str</a> [4][32]</td></tr>
+<tr class="separator:aa96b951a8b8aeeb32e2ce85ef94ecbb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a631cfab1a4ee7d182cdfae5f9d51201b" id="r_a631cfab1a4ee7d182cdfae5f9d51201b"><td class="memItemLeft" align="right" valign="top"><a id="a631cfab1a4ee7d182cdfae5f9d51201b" name="a631cfab1a4ee7d182cdfae5f9d51201b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>paintEvent</b> (QPaintEvent *event) override</td></tr>
+<tr class="separator:a631cfab1a4ee7d182cdfae5f9d51201b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa96b951a8b8aeeb32e2ce85ef94ecbb1" name="aa96b951a8b8aeeb32e2ce85ef94ecbb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa96b951a8b8aeeb32e2ce85ef94ecbb1">&#9670;&#160;</a></span>pgie_classes_str</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr gchar CameraWidget::pgie_classes_str</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        <span class="stringliteral">&quot;Vehicle&quot;</span>, <span class="stringliteral">&quot;TwoWheeler&quot;</span>, <span class="stringliteral">&quot;Person&quot;</span>, <span class="stringliteral">&quot;Roadsign&quot;</span></div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../db/d2c/camerawidget_8h_source.html">camerawidget.h</a></li>
 <li><b>camerawidget.cpp</b></li>

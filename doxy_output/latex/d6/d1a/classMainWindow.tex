@@ -2,8 +2,7 @@
 \hypertarget{classMainWindow}{}\label{classMainWindow}\index{MainWindow@{MainWindow}}
 
 
-Inheritance diagram for Main\+Window\+:
-\nopagebreak
+Inheritance diagram for Main\+Window\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,8 +11,7 @@ Inheritance diagram for Main\+Window\+:
 \end{figure}
 
 
-Collaboration diagram for Main\+Window\+:
-\nopagebreak
+Collaboration diagram for Main\+Window\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -26,14 +24,20 @@ Collaboration diagram for Main\+Window\+:
 \Hypertarget{classMainWindow_ab99ca68b8c37b7baed01ec7dd8920eb7}\label{classMainWindow_ab99ca68b8c37b7baed01ec7dd8920eb7} 
 void {\bfseries update\+UI} ()
 \item 
-\Hypertarget{classMainWindow_a390540b1b597bc1576acd16abbf8009b}\label{classMainWindow_a390540b1b597bc1576acd16abbf8009b} 
-void {\bfseries on\+Motor\+Data\+Received} (const \mbox{\hyperlink{classResponse__msg}{Response\+\_\+msg}} \&data)
+void \mbox{\hyperlink{classMainWindow_a390540b1b597bc1576acd16abbf8009b}{on\+Motor\+Data\+Received}} (const \mbox{\hyperlink{classResponse__msg}{Response\+\_\+msg}} \&data)
+\begin{DoxyCompactList}\small\item\em Processes motor response data and updates the UI accordingly. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMainWindow_ab591672baddd0e3754efd366417c6b64}{on\+Joy\+Data\+Received}} (const \mbox{\hyperlink{classJoystickData}{Joystick\+Data}} \&data)
+\begin{DoxyCompactList}\small\item\em Handles joystick input data and updates UI components and internal states accordingly. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMainWindow_ac937b319794c772cddc146b0d1d29750}{on\+Plc\+Data\+Received}} (const \mbox{\hyperlink{classResponse__msg}{Response\+\_\+msg}} \&data)
+\begin{DoxyCompactList}\small\item\em Processes PLC response data and updates the UI accordingly. \end{DoxyCompactList}\item 
+\Hypertarget{classMainWindow_a86809ddb1a9538a7ba7ed79de1656a47}\label{classMainWindow_a86809ddb1a9538a7ba7ed79de1656a47} 
+void {\bfseries on\+Primary\+Object\+Updated} (const \mbox{\hyperlink{structObjectInfo}{Object\+Info}} \&primary\+Object)
 \item 
-\Hypertarget{classMainWindow_ab591672baddd0e3754efd366417c6b64}\label{classMainWindow_ab591672baddd0e3754efd366417c6b64} 
-void {\bfseries on\+Joy\+Data\+Received} (const \mbox{\hyperlink{classJoystickData}{Joystick\+Data}} \&data)
+\Hypertarget{classMainWindow_a52e511b068e8b91b6046aef8351edde7}\label{classMainWindow_a52e511b068e8b91b6046aef8351edde7} 
+void {\bfseries update\+Track\+Button} (const \mbox{\hyperlink{structObjectInfo}{Object\+Info}} \&track\+Info)
 \item 
-\Hypertarget{classMainWindow_ac937b319794c772cddc146b0d1d29750}\label{classMainWindow_ac937b319794c772cddc146b0d1d29750} 
-void {\bfseries on\+Plc\+Data\+Received} (const \mbox{\hyperlink{classResponse__msg}{Response\+\_\+msg}} \&data)
+\Hypertarget{classMainWindow_a1c995c1791bca1c7a0fd91e2931ade14}\label{classMainWindow_a1c995c1791bca1c7a0fd91e2931ade14} 
+void {\bfseries trigger\+Tracking\+Manager\+Test} ()
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Signals}
 \begin{DoxyCompactItemize}
@@ -41,8 +45,20 @@ void {\bfseries on\+Plc\+Data\+Received} (const \mbox{\hyperlink{classResponse__
 \Hypertarget{classMainWindow_a94327ee35a49e469081729d3731d9c52}\label{classMainWindow_a94327ee35a49e469081729d3731d9c52} 
 void {\bfseries detection\+Toggled} (bool enabled)
 \item 
+\Hypertarget{classMainWindow_a37974418dda6bbae50afe36ffc98e73a}\label{classMainWindow_a37974418dda6bbae50afe36ffc98e73a} 
+void {\bfseries setting\+Parameters} (const QString \&burst\+Mode, bool tracking\+State, bool detection\+State, bool stab\+State, double speed)
+\item 
+\Hypertarget{classMainWindow_abbc7ea147ca64ed863d75c912da2c791}\label{classMainWindow_abbc7ea147ca64ed863d75c912da2c791} 
+void {\bfseries displaying\+Motor\+Parameters} (int inc, double azimuth)
+\item 
+\Hypertarget{classMainWindow_a79bdece91e0829fc555cb5143f61bdb0}\label{classMainWindow_a79bdece91e0829fc555cb5143f61bdb0} 
+void {\bfseries displaying\+Plc\+Parameters} (int inc, bool in1)
+\item 
 \Hypertarget{classMainWindow_a576d72f053f5b910b22421c63e4f4183}\label{classMainWindow_a576d72f053f5b910b22421c63e4f4183} 
 void {\bfseries tracking\+Toggled} (bool enabled)
+\item 
+\Hypertarget{classMainWindow_ad816c9558cb1aaaa0db4ea44bd8d093a}\label{classMainWindow_ad816c9558cb1aaaa0db4ea44bd8d093a} 
+void {\bfseries primary\+Object\+Position\+Updated} (const QPoint \&position)
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -53,6 +69,60 @@ void {\bfseries tracking\+Toggled} (bool enabled)
 \Hypertarget{classMainWindow_a64df4fd49080a6a158ecd3256cd62111}\label{classMainWindow_a64df4fd49080a6a158ecd3256cd62111} 
 void {\bfseries add\+Camera\+Widget\+To\+Layout} (\mbox{\hyperlink{classCameraWidget}{Camera\+Widget}} \texorpdfstring{$\ast$}{*}camera\+Widget)
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMainWindow_ab591672baddd0e3754efd366417c6b64}\label{classMainWindow_ab591672baddd0e3754efd366417c6b64} 
+\index{MainWindow@{MainWindow}!onJoyDataReceived@{onJoyDataReceived}}
+\index{onJoyDataReceived@{onJoyDataReceived}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{onJoyDataReceived}{onJoyDataReceived}}
+{\footnotesize\ttfamily void Main\+Window\+::on\+Joy\+Data\+Received (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classJoystickData}{Joystick\+Data}} \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Handles joystick input data and updates UI components and internal states accordingly. 
+
+This method processes the joystick data received, including button states, axis states, and hat states. It updates the UI and internal states based on the joystick input, such as speed adjustments, mode toggling, and tracking or detection state changes. It also publishes actions to PLC or motor controllers based on the input.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A const reference to \doxylink{classJoystickData}{Joystick\+Data}, which contains the current state of the joystick, including button states, axis positions, and hat directions. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMainWindow_a390540b1b597bc1576acd16abbf8009b}\label{classMainWindow_a390540b1b597bc1576acd16abbf8009b} 
+\index{MainWindow@{MainWindow}!onMotorDataReceived@{onMotorDataReceived}}
+\index{onMotorDataReceived@{onMotorDataReceived}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{onMotorDataReceived}{onMotorDataReceived}}
+{\footnotesize\ttfamily void Main\+Window\+::on\+Motor\+Data\+Received (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classResponse__msg}{Response\+\_\+msg}} \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Processes motor response data and updates the UI accordingly. 
+
+This method extracts relevant information from the motor response, such as azimuth, and updates the UI components to reflect the current state or position. It increments an internal counter to track the number of responses processed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A const reference to \doxylink{classResponse__msg}{Response\+\_\+msg}, which contains the response data from the motor, including status, position, or error codes as applicable. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMainWindow_ac937b319794c772cddc146b0d1d29750}\label{classMainWindow_ac937b319794c772cddc146b0d1d29750} 
+\index{MainWindow@{MainWindow}!onPlcDataReceived@{onPlcDataReceived}}
+\index{onPlcDataReceived@{onPlcDataReceived}!MainWindow@{MainWindow}}
+\doxysubsubsection{\texorpdfstring{onPlcDataReceived}{onPlcDataReceived}}
+{\footnotesize\ttfamily void Main\+Window\+::on\+Plc\+Data\+Received (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classResponse__msg}{Response\+\_\+msg}} \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Processes PLC response data and updates the UI accordingly. 
+
+Similar to on\+Motor\+Data\+Received, this method processes response data from PLC-\/controlled devices. It updates specific UI components related to PLC operations and increments an internal counter to keep track of the number of PLC responses processed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & A const reference to \doxylink{classResponse__msg}{Response\+\_\+msg}, which contains the response data from the PLC, including status, position, or error codes as applicable. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

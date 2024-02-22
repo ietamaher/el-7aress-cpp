@@ -11,23 +11,15 @@ CameraWidget::CameraWidget(QWidget *parent) : QOpenGLWidget(parent), targetPosit
     pipeline = NULL, source = NULL, sink = NULL, pgie = NULL, tracker = NULL, streammux = NULL, nvvidconvsrc = NULL, vidconv = NULL, 
     nvosd = NULL, transform = NULL, caps1 = NULL, caps2 = NULL, bus = NULL, msg = NULL,  capsfilter1 = NULL,
     capsfilter2 = NULL, decoder = NULL, bus_watch_id = 0, enableDetection = false, enableTracking = false, 
-    currentBurstMode= "" , currentTrackingState= false, currentDetectionState= false , currentStabState= "", currentSpeed = 0.0,
-        setAttribute(Qt::WA_NativeWindow);
+    currentBurstMode= "" , currentTrackingState= false, currentDetectionState= false , currentStabState= "", currentSpeed = 0.0, currentAzimuth = 0.0,
+    currentincr_ = 0, currentInput1 = false , currentincr_1 = 0,
+    setAttribute(Qt::WA_NativeWindow);
     qRegisterMetaType<ObjectInfo>("ObjectInfo");  // Register ObjectInfo for use in signals.
     qRegisterMetaType<QList<ObjectInfo>>("QList<ObjectInfo>");
-      //setAttribute(Qt::WA_TranslucentBackground); // Allow the widget to be transparent
-    //setAttribute(Qt::WA_NoSystemBackground); // Avoid filling the background
-    //setAttribute(Qt::WA_OpaquePaintEvent); // The widget's painting is opaque (doesn't require clearing the background)
-            setAttribute(Qt::WA_NativeWindow, true);
-            setStyleSheet("background-color: green");
- 
-    //connect(this, &CameraWidget::frameReady, this, &CameraWidget::displayFrame);
-connect(this, &CameraWidget::frameReady, this, &CameraWidget::displayFrame, Qt::AutoConnection);
-//trackingManager = new TrackingManager();
 
-//connect(this, &CameraWidget::objectMetadataProcessed, trackingManager, &TrackingManager::processObjectMetadata,  Qt::QueuedConnection);
- 
-        
+    setAttribute(Qt::WA_NativeWindow, true);
+    setStyleSheet("background-color: green");
+    connect(this, &CameraWidget::frameReady, this, &CameraWidget::displayFrame, Qt::AutoConnection);        
 }
 
 CameraWidget::~CameraWidget() {
@@ -39,6 +31,16 @@ void CameraWidget::setSettingParameters(const QString& burstMode, bool trackingS
     currentDetectionState = detectionState;
     currentStabState = stabState;
     currentSpeed = speed/100,0; 
+}
+
+void CameraWidget::setMotorParameters(int incr_, double azimuth){
+    currentincr_ = incr_;
+    currentAzimuth = azimuth;
+}
+
+void CameraWidget::setPlcParameters(int incr_, bool input1){
+    currentincr_1 = incr_;
+    currentInput1 = input1;
 }
 
 void CameraWidget::startCamera() {
@@ -294,21 +296,21 @@ GstPadProbeReturn CameraWidget::osd_sink_pad_buffer_probe (GstPad * pad, GstPadP
         }
         display_meta = nvds_acquire_display_meta_from_pool(batch_meta);
         //NvOSD_TextParams *txt_params  = &display_meta->text_params[0];
-        display_meta->num_labels = 7;
-        display_meta->num_lines += 2;
+        display_meta->num_labels = 11;
+        display_meta->num_lines += 2; // 2 + 1 + 36
         //txt_params->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
         
         NvOSD_TextParams *txt_params1 = &display_meta->text_params[0];
         txt_params1->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
-        snprintf(txt_params1->display_text, MAX_DISPLAY_LEN, "Person = %d", person_count);
+        snprintf(txt_params1->display_text, MAX_DISPLAY_LEN, "AZDKD1 = %d", instance-> currentincr_);
         txt_params1->x_offset = 10;   
         txt_params1->y_offset = 10;  
 
         NvOSD_TextParams *txt_params2 = &display_meta->text_params[1];
         txt_params2->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
-        snprintf(txt_params2->display_text, MAX_DISPLAY_LEN, "Vehicle = %d", vehicle_count);
-        txt_params2->x_offset = 150;   
-        txt_params2->y_offset = 10;
+        snprintf(txt_params2->display_text, MAX_DISPLAY_LEN, "PLC = %d", instance-> currentincr_1);
+        txt_params2->x_offset = 10;   
+        txt_params2->y_offset = 40;
 
         NvOSD_TextParams *txt_params3 = &display_meta->text_params[2];
         txt_params3->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
@@ -317,13 +319,13 @@ GstPadProbeReturn CameraWidget::osd_sink_pad_buffer_probe (GstPad * pad, GstPadP
         const char *cString = byteArray.constData();
         snprintf(txt_params3->display_text, MAX_DISPLAY_LEN, "%s ", cString);
         txt_params3->x_offset = 10;   
-        txt_params3->y_offset = 600;  
+        txt_params3->y_offset = 680;  
 
         NvOSD_TextParams *txt_params4 = &display_meta->text_params[3];
         txt_params4->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
-        snprintf(txt_params4->display_text, MAX_DISPLAY_LEN, "SPEED:%d ", static_cast<int>(instance->currentSpeed));
-        txt_params4->x_offset = 300;   
-        txt_params4->y_offset = 10; 
+        snprintf(txt_params4->display_text, MAX_DISPLAY_LEN, "SPEED:%d", static_cast<int>(instance->currentSpeed));
+        txt_params4->x_offset = 1130;   
+        txt_params4->y_offset = 210; 
 
         NvOSD_TextParams *txt_params5 = &display_meta->text_params[4];
         txt_params5->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
@@ -333,72 +335,140 @@ GstPadProbeReturn CameraWidget::osd_sink_pad_buffer_probe (GstPad * pad, GstPadP
 
         NvOSD_TextParams *txt_params6 = &display_meta->text_params[5];
         txt_params6->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
-        snprintf(txt_params6->display_text, MAX_DISPLAY_LEN, "STAB:%s ", instance->currentStabState ? "ON" : "OFF");
+        snprintf(txt_params6->display_text, MAX_DISPLAY_LEN, "STAB:%s", instance->currentStabState ? "ON" : "OFF");
         txt_params6->x_offset = 600;   
         txt_params6->y_offset = 10; 
 
         NvOSD_TextParams *txt_params7 = &display_meta->text_params[6];
         txt_params7->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
-        snprintf(txt_params7->display_text, MAX_DISPLAY_LEN, "CAM:%s ", instance->currentDetectionState ? "NIGHT" : "DAY");
+        snprintf(txt_params7->display_text, MAX_DISPLAY_LEN, "CAM:%s", instance->currentDetectionState ? "NIGHT" : "DAY");
         txt_params7->x_offset = 750;   
         txt_params7->y_offset = 10; 
 
+        NvOSD_TextParams *txt_params8 = &display_meta->text_params[7];
+        txt_params8->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
+        snprintf(txt_params8->display_text, MAX_DISPLAY_LEN, "AZ:%0.1f°",  instance->currentAzimuth);
+        txt_params8->x_offset = 1130;   
+        txt_params8->y_offset = 120; 
 
-instance->setCommonTextParams(&display_meta->text_params[0]);
-instance->setCommonTextParams(&display_meta->text_params[1]);
-instance->setCommonTextParams(&display_meta->text_params[2]);
-instance->setCommonTextParams(&display_meta->text_params[3]);
-instance->setCommonTextParams(&display_meta->text_params[4]);
-instance->setCommonTextParams(&display_meta->text_params[5]);
-instance->setCommonTextParams(&display_meta->text_params[6]);
-//setCommonTextParams(&display_meta->text_params[1]);
-        /* Font , font-color and font-size */
-// Assuming you know the center (centerX, centerY) and the size of the crosshair (length)
-int centerX = MUXER_OUTPUT_WIDTH / 2;
-int centerY = MUXER_OUTPUT_HEIGHT / 2;
-int length = 40; // Length of each line of the crosshair
+        NvOSD_TextParams *txt_params9 = &display_meta->text_params[8];
+        txt_params9->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
+        snprintf(txt_params9->display_text, MAX_DISPLAY_LEN, "EL:%0.1f°",  12.5);
+        txt_params9->x_offset = 1130;   
+        txt_params9->y_offset = 150; 
 
-// Horizontal line
-NvOSD_LineParams *line_params_h = &display_meta->line_params[display_meta->num_lines++];
-line_params_h->x1 = centerX - (length / 2);
-line_params_h->y1 = centerY;
-line_params_h->x2 = centerX + (length / 2);
-line_params_h->y2 = centerY;
-line_params_h->line_width = 2;
-line_params_h->line_color = (NvOSD_ColorParams) {1, 0, 0, 1}; // RGBA Red
+        NvOSD_TextParams *txt_params10 = &display_meta->text_params[9];
+        txt_params10->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
+        snprintf(txt_params10->display_text, MAX_DISPLAY_LEN, "FOV:%d°",  43);
+        txt_params10->x_offset = 1130;   
+        txt_params10->y_offset = 180;       
 
-// Vertical line
-NvOSD_LineParams *line_params_v = &display_meta->line_params[display_meta->num_lines++];
-line_params_v->x1 = centerX;
-line_params_v->y1 = centerY ; //- (length / 2);
-line_params_v->x2 = centerX;
-line_params_v->y2 = centerY + (length / 2);
-line_params_v->line_width = 2;
-line_params_v->line_color = (NvOSD_ColorParams) {1, 0, 0, 1}; //
+        NvOSD_TextParams *txt_params11 = &display_meta->text_params[10];
+        txt_params11->display_text = static_cast<char*>(g_malloc0(MAX_DISPLAY_LEN));
+        snprintf(txt_params11->display_text, MAX_DISPLAY_LEN, "LRF:%dm",  265);
+        txt_params11->x_offset = 10;   
+        txt_params11->y_offset = 650;       
 
-int bracketSize = 30; // Size of each bracket arm
-int bracketThickness = 2; // Line thickness of the bracket
-int offsetFromCenter = 60; // Offset from the crosshair center
 
-// Center position of the crosshair
-//int centerX = MUXER_OUTPUT_WIDTH / 2;
-//int centerY = MUXER_OUTPUT_HEIGHT / 2;
+        instance->setCommonTextParams(&display_meta->text_params[0]);
+        instance->setCommonTextParams(&display_meta->text_params[1]);
+        instance->setCommonTextParams(&display_meta->text_params[2]);
+        instance->setCommonTextParams(&display_meta->text_params[3]);
+        instance->setCommonTextParams(&display_meta->text_params[4]);
+        instance->setCommonTextParams(&display_meta->text_params[5]);
+        instance->setCommonTextParams(&display_meta->text_params[6]);
+        instance->setCommonTextParams(&display_meta->text_params[7]);
+        instance->setCommonTextParams(&display_meta->text_params[8]);
+        instance->setCommonTextParams(&display_meta->text_params[9]);
+        instance->setCommonTextParams(&display_meta->text_params[10]);
 
-// Top-left bracket
-instance->addLineToDisplayMeta(display_meta, centerX - offsetFromCenter, centerY - offsetFromCenter, centerX - offsetFromCenter + bracketSize, centerY - offsetFromCenter);
-instance->addLineToDisplayMeta(display_meta, centerX - offsetFromCenter, centerY - offsetFromCenter, centerX - offsetFromCenter, centerY - offsetFromCenter + bracketSize);
+        // Azimuth in degrees, convert to radians for trigonometric functions
+        double azimuthRadians = (instance->currentAzimuth * M_PI) / 180.0;
+        int centerX_AZ = 1180;
+        int centerY_AZ = 60;
+        int radius = 50;
+        // Calculate the endpoint of the line based on the azimuth angle
+        int endX = centerX_AZ + (radius - 3) * sin(azimuthRadians);
+        int endY = centerY_AZ - (radius - 3) * cos(azimuthRadians);
 
-// Top-right bracket
-instance->addLineToDisplayMeta(display_meta, centerX + offsetFromCenter, centerY - offsetFromCenter, centerX + offsetFromCenter + bracketSize, centerY - offsetFromCenter);
-instance->addLineToDisplayMeta(display_meta, centerX + offsetFromCenter, centerY - offsetFromCenter, centerX + offsetFromCenter, centerY - offsetFromCenter - bracketSize);
+        NvOSD_LineParams *azimuthLine = &display_meta->line_params[display_meta->num_lines++];
+        azimuthLine->x1 = centerX_AZ;
+        azimuthLine->y1 = centerY_AZ;
+        azimuthLine->x2 = endX;
+        azimuthLine->y2 = endY;
+        azimuthLine->line_width = 2; // Set the line width
+        azimuthLine->line_color = (NvOSD_ColorParams){1, 0, 0, 0.8}; 
 
-// Bottom-left bracket
-instance->addLineToDisplayMeta(display_meta, centerX - offsetFromCenter, centerY + offsetFromCenter, centerX - offsetFromCenter - bracketSize, centerY + offsetFromCenter);
-instance->addLineToDisplayMeta(display_meta, centerX - offsetFromCenter, centerY + offsetFromCenter, centerX - offsetFromCenter, centerY + offsetFromCenter + bracketSize);
+        int numSegments = 36; // Number of segments to approximate the circle
 
-// Bottom-right bracket
-instance->addLineToDisplayMeta(display_meta, centerX + offsetFromCenter, centerY + offsetFromCenter, centerX + offsetFromCenter + bracketSize, centerY + offsetFromCenter);
-instance->addLineToDisplayMeta(display_meta, centerX + offsetFromCenter, centerY + offsetFromCenter, centerX + offsetFromCenter, centerY + offsetFromCenter + bracketSize);
+        for (int i = 0; i < numSegments; ++i) {
+            double angle1 = (double)i * 2 * M_PI / numSegments;
+            double angle2 = (double)(i + 1) * 2 * M_PI / numSegments;
+
+            int x1 = centerX_AZ + radius * cos(angle1);
+            int y1 = centerY_AZ + radius * sin(angle1);
+            int x2 = centerX_AZ + radius * cos(angle2);
+            int y2 = centerY_AZ + radius * sin(angle2);
+
+            // Draw line segment from (x1, y1) to (x2, y2)
+            NvOSD_LineParams *line_params = &display_meta->line_params[display_meta->num_lines++];
+            line_params->x1 = x1;
+            line_params->y1 = y1;
+            line_params->x2 = x2;
+            line_params->y2 = y2;
+            line_params->line_width = 2; // Adjust as needed
+            line_params->line_color = (NvOSD_ColorParams){1, 0, 0, 0.8};  
+        }
+
+
+
+        //setCommonTextParams(&display_meta->text_params[1]);
+                /* Font , font-color and font-size */
+        // Assuming you know the center (centerX, centerY) and the size of the crosshair (length)
+        int centerX = MUXER_OUTPUT_WIDTH / 2;
+        int centerY = MUXER_OUTPUT_HEIGHT / 2;
+        int length = 40; // Length of each line of the crosshair
+
+    // Horizontal line
+    NvOSD_LineParams *line_params_h = &display_meta->line_params[display_meta->num_lines++];
+    line_params_h->x1 = centerX - (length / 2);
+    line_params_h->y1 = centerY;
+    line_params_h->x2 = centerX + (length / 2);
+    line_params_h->y2 = centerY;
+    line_params_h->line_width = 2;
+    line_params_h->line_color = (NvOSD_ColorParams) {1, 0, 0, 1}; // RGBA Red
+
+    // Vertical line
+    NvOSD_LineParams *line_params_v = &display_meta->line_params[display_meta->num_lines++];
+    line_params_v->x1 = centerX;
+    line_params_v->y1 = centerY ; //- (length / 2);
+    line_params_v->x2 = centerX;
+    line_params_v->y2 = centerY + (length / 2);
+    line_params_v->line_width = 2;
+    line_params_v->line_color = (NvOSD_ColorParams) {1, 0, 0, 1}; //
+
+    int bracketSize = 30; // Size of each bracket arm
+    int bracketThickness = 2; // Line thickness of the bracket
+    int x_offsetFromCenter = 90; // Offset from the crosshair center
+    int offsetFromCenter = 60; // Offset from the crosshair center
+
+ 
+
+    // Top-left bracket
+    instance->addLineToDisplayMeta(display_meta, centerX - x_offsetFromCenter, centerY - offsetFromCenter, centerX - x_offsetFromCenter + bracketSize, centerY - offsetFromCenter);
+    instance->addLineToDisplayMeta(display_meta, centerX - x_offsetFromCenter, centerY - offsetFromCenter, centerX - x_offsetFromCenter, centerY - offsetFromCenter + bracketSize);
+
+    // Top-right bracket
+    instance->addLineToDisplayMeta(display_meta, centerX + x_offsetFromCenter, centerY - offsetFromCenter, centerX + x_offsetFromCenter - bracketSize, centerY - offsetFromCenter);
+    instance->addLineToDisplayMeta(display_meta, centerX + x_offsetFromCenter, centerY - offsetFromCenter, centerX + x_offsetFromCenter, centerY - offsetFromCenter + bracketSize);
+
+    // Bottom-left bracket
+    instance->addLineToDisplayMeta(display_meta, centerX - x_offsetFromCenter, centerY + offsetFromCenter, centerX - x_offsetFromCenter + bracketSize, centerY + offsetFromCenter);
+    instance->addLineToDisplayMeta(display_meta, centerX - x_offsetFromCenter, centerY + offsetFromCenter, centerX - x_offsetFromCenter, centerY + offsetFromCenter - bracketSize);
+
+    // Bottom-right bracket
+    instance->addLineToDisplayMeta(display_meta, centerX + x_offsetFromCenter, centerY + offsetFromCenter, centerX + x_offsetFromCenter - bracketSize, centerY + offsetFromCenter);
+    instance->addLineToDisplayMeta(display_meta, centerX + x_offsetFromCenter, centerY + offsetFromCenter, centerX + x_offsetFromCenter, centerY + offsetFromCenter - bracketSize);
 
 
 
@@ -435,7 +505,7 @@ void CameraWidget::addLineToDisplayMeta(NvDsDisplayMeta *display_meta, int x1, i
     line_params->x2 = x2;
     line_params->y2 = y2;
     line_params->line_width = 2;
-    line_params->line_color = (NvOSD_ColorParams){1, 0, 0, 1}; 
+    line_params->line_color = (NvOSD_ColorParams){1, 0, 0, 0.8}; 
 }
 
 
